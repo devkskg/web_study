@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>테이블</title>
+</head>
+<hr>
+<h1>테이블이란?</h1>
+<body>
+    <table border="1">
+        <caption>표1. 우리반 성적</caption>
+        <!-- CSS 안배워서 아직 테이블 만큼만 줄 설정되는 중 -->
+        <tr>
+            <th>이름</th>
+            <th>점수</th>
+        </tr>
+        <tr>
+            <td>김철수</td>
+            <td>60</td>
+        </tr>
+        <tr>
+            <td>이영희</td>
+            <td>90</td>
+        </tr>
+        <tr>
+            <td>홍길동</td>
+            <td>20</td>
+        </tr>
+    </table>
+
+    <hr>
+    
+    <h1>테이블 병합</h1>
+    <table border="1">
+        <tr>
+            <td rowspan="3">내용1</td>
+            <td>내용2</td>
+            <td>내용3</td>
+        </tr>
+        <tr>
+            <!-- <td>내용4</td> -->
+            <td colspan="2">내용5</td>
+            <!-- <td>내용6</td> -->
+        </tr>
+        <tr>
+            <!-- <td>내용7</td> -->
+            <td>내용8</td>
+            <td>내용9</td>
+        </tr>
+    </table>
+
+    <hr>
+
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>행 통합과 열 통합</h1>
+    <table border="1">
+        <caption>행 통합</caption>
+        <tr>
+            <th >1행</th>
+            <td colspan="2">1행 1열</td>
+            <!-- <td>1열</td> -->
+        </tr>
+        <tr>
+            <th rowspan="3">2행</th>
+            <td colspan="2">2행 2열</td>
+            <!-- <td>2열</td> -->
+        </tr>
+        <tr>
+            <!-- <td>2행</td> -->
+            <td colspan="2">3행 2열</td>
+            <!-- <td>2열</td> -->
+        </tr>
+    </table>
+
+    <table border="1">
+        <caption>열 통합</caption>
+        <tr>
+            <th>1열</th>
+            <th colspan="2">2열</th>
+        </tr>
+        <tr>
+            <td>2행 1열</td>
+            <td>2행 2열</td>
+            <td>2행 3열</td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <h1>테이블 구조</h1>
+    <table border="1">
+        <colgroup>
+            <!-- CSS 쓸 때. key:value; -->
+            <col width = "30%" style="background-color: cornflowerblue;">
+            <col width = "70%">
+            <!-- <col width = 1 - col-width> // 이게 되나? -->
+        </colgroup>
+        <thead>
+            <tr style="background-color: antiquewhite;">
+                <th>No</th>
+                <th>이름</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>김가남</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>김나남</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>김다담</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>김라람</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>김마맘</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>김바밤</td>
+            </tr>
+        </tbody>
+
+        <tfoot>
+            <tr>
+                <td>인원수</td>
+                <td>6명</td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <hr>
+
+    <table border="1">
+        <caption>출장비용 보고서</caption>
+        <colgroup>
+            <col> 
+            <col>
+            <col style="background-color: indianred;">
+        </colgroup>
+        <thead>
+            <tr>
+                <th>대분류</th>
+                <th>중분류</th>
+                <th >금액</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>교통비</td>
+                <td> ktx</td>
+                <td>100000</td>
+            </tr>
+            <tr>
+                <td rowspan="2">식비</td>
+                <td>점심</td>
+                <td>20000</td>
+            </tr>
+            <tr>
+                <!-- <td>대분류</td> -->
+                <td>저녁</td>
+                <td>200000</td>
+            </tr>
+            <tr>
+                <td>숙박비</td>
+                <td>모텔</td>
+                <td>50000</td>
+            </tr>
+        </tbody>
+
+        <tfoot>
+            <tr>
+                <td colspan="2">총합계</td>
+                <!-- <td>중분류</td> -->
+                <td>1900000</td>
+            </tr>
+        </tfoot>
+
+        </table>
+        
+        <hr><br>
+
+        <!-- div는 Block요소 - 한 줄 차지-->
+        <div>콘텐츠1</div>
+        <div>콘텐츠2</div>
+        <!-- span은 inline요소 - 콘텐츠 차지하는 만큼만 차지-->
+        <span>콘텐츠3</span>
+        <span>콘텐츠4</span>
+
+        <div>
+            <span>이렇게도</span>
+            <span style="background-color: rgb(165, 184, 177);">쓸수</span>
+            <span>있나요?</span>
+        </div>
+        <div>
+            네~ br 안 써도 쓸 수 있어요.
+        </div>
+
+    </body>
+    </html>
