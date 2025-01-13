@@ -16,5 +16,87 @@
         <input type="text" name="user_id" maxlength="10" placeholder="이름을 써주세요."
         disabled>
     </form>
+    <!-- 바깥쪽에서도 쓸 수 있다? 무슨말이징.. -->
+    <!-- (1) test 속성 : 한줄짜리 문자 -->
+    <!-- name-백엔드(자바)가 쓰는 구분자(자바에서key값) // id=프론트엔드가 쓰는 구분자 -->
+    <!-- name, id 둘 다 쓰는 버릇 가져야함 -->
+    <!-- min, max = 유효성(validation) 검사 할때 쓰는 속성 -->
+    <!-- value는 잘 모르겠네.. -->
+    <input type="text" name="user_id" id="user_id" minlength="3" maxlength="10" value="kcs">
+    <!-- 라벨 쓰는 방법 두가지! -->
+    <!-- 라벨 앞에 문자 클릭해도 자동으로 박스 안에 텍스트 쓸 수 있음 -->
+    <!-- 1. 중첩방식 = 위치 중요! -->
+    <label>
+        아이디
+        <input type="text">
+    </label>
+    <!-- 2. 비중첩방식 = 위치 떨어뜨려도 가능하다!(id-for로 묶여있기 때문에!) -->
+    <label for="user_id_lbl">아이디</label>
+    <input type="text" id="user_id_lbl">
+    <br>
+    <!-- (2) password 속성 : 비밀번호 -->
+    <label for="user_pw">비밀번호</label>
+    <input type="password" name="user_pw" id="user_pw" minlength="4" maxlength="15" placeholder="비밀번호 입력창" value="admin1234!">
+    <!-- 비밀번호 창에 value를 쓸 수는 있지만 잘 쓰지 않는다. -->
+    <br>
+    <!-- (3) email 속성 : 이메일 -->
+    <label for="user_email">이메일</label>
+    <input type="email" name="user_email" id="user_email" placeholder="이메일 적는 곳" value="밸류도 쓸 수 있다!">
+    <br>
+    <!-- (4) hidden 타입 -->
+    <input type="hidden" name="명칭" value="값">
+    <br>
+    <label for="suer_profile">프로필</label>
+    <input type="file" id="suer_profile" style="display:none;">
+    <input type="file" multiple>
+    <!-- 파일 선택시 초기 필터만 걸러주는 것이고 pdf만 들어가게 제약하는 것이 아니다. -->
+    <!-- 제대로 제약하려면 JavaScript로 확장자 판단 해야된다. -->
+    <input type="file" accept=".pdf">
+    <input type="file" accept="imge,jpeg">
+    <br>
+    <!-- (6) 버튼 속성 -->
+    <form method="get" action="#">
+        <fieldset>
+            <legend>버튼 테스트</legend>
+            <input type="button" value="value = 버튼에 표시될 글씨"
+            onclick="alert('이 편지는 영국에서 최초로 시작되어 일년에 한바퀴를 돌면서 받는 사람에게 행운을 주었고 지금은 당신에게로 옮겨진 이 편지는 4일 안에 당신 곁을 떠나야 합니다. 이 편지를 포함해서 7통을 행운이 필요한 사람에게 보내 주셔야 합니다. 복사를 해도 좋습니다. 혹 미신이라 하실지 모르지만 사실입니다.영국에서 HGXWCH이라는 사람은 1930년에 이 편지를 받았습니다. 그는 비서에게 복사해서 보내라고 했습니다. 며칠 뒤에 복권이 당첨되어 20억을 받았습니다. 어떤 이는 이 편지를 받았으나 96시간 이내 자신의 손에서 떠나야 한다는 사실을 잊었습니다. 그는 곧 사직되었습니다. 나중에야 이 사실을 알고 7통의 편지를 보냈는데 다시 좋은 직장을 얻었습니다. 미국의 케네디 대통령은 이 편지를 받았지만 그냥 버렸습니다. 결국 9일 후 그는 암살당했습니다. 기억해 주세요. 이 편지를 보내면 7년의 행운이 있을 것이고 그렇지 않으면 3년의 불행이 있을 것입니다. 그리고 이 편지를 버리거나 낙서를 해서는 절대로 안됩니다. 7통입니다. 이 편지를 받은 사람은 행운이 깃들 것입니다. 힘들겠지만 좋은 게 좋다고 생각하세요. 7년의 행운을 빌면서...');">
+            <input type="text" minlength="5" required>
+            <input type="submit" value="submint = 제출">
+            <input type="reset" value="reset = 초기화">
+        </fieldset>
+        <fieldset>
+            <legend>텍스트</legend>
+            <input type="text">
+        </fieldset>
+    </form>
+    <br>
+    <form method="get" action="#">
+        <fieldset style="border-color: black;">
+            <legend>필수 정보</legend>
+            <label for="a_name">이름</label>
+            <input type="text" id="a_name">
+            <br>
+            <label for="a_id">아이디</label>
+            <input type="text" id="a_id">
+            <br><label for="a_pw">비밀번호</label>
+            <input type="password" id="a_pw">
+            <br>
+        </fieldset>
+        <fieldset style="border-color: black;">
+            <legend>추가 정보</legend>
+            <label for="a_phone">전화번호</label>
+            <input type="text" id="a_phone">
+            <br>
+            <label for="a_email">이메일</label>
+            <input type="email" id="a_email">
+            <br><label for="a_profile">프로필</label>
+            <input type="file" id="a_profile">
+            <br>
+        </fieldset>
+        <br>
+        <input type="submit" value="제출하기">
+        <input type="reset" value="다시쓰기">
+    </form>
+
 </body>
 </html>
