@@ -24,19 +24,19 @@
     <br>
     <!-- checkbox : name이 같은 '여러개 값' 선택 -->
     <!-- 백엔드로 key값이 lunch이면서 [1,2] 배열로 들어간다. -->
-    <input type="checkbox" value="1" id="jja" name="lunch">
+    <input type="checkbox" value="1" id="jja" name="lunch" checked>
     <label for="jja">짜장면</label>
-    <input type="checkbox" value="2" id="bok" name="lunch">
+    <input type="checkbox" value="2" id="bok" name="lunch" checked>
     <label for="bok">볶음밥</label>
     <br>
     <!--  radio : 'name이 같은 것' 중에 하나만 -->
-    <input type="radio" value="1" id="seoul" name="addr">
+    <input type="radio" value="1" id="seoul" name="addr" checked>
     <label for="seoul">서울</label>
-    <input type="radio" value="2" id="sanbon" name="addr">
+    <input type="radio" value="2" id="sanbon" name="addr" checked>
     <label for="sanbon">산본</label>
     <br>
     <!-- select :  -->
-    <select name="user_select" id="user_select">
+    <select name="user_select" id="user_select" size="3">
         <option value="">선택하기</option>
         <option value="1">피카츄</option>
         <option value="2">파이리</option>
@@ -52,8 +52,8 @@
     <!-- button의 type은 디폴트가 submit이다!! -->
     <form method="get" name="testFrm" action="#">
         <input type="text" required><br>
-        <input type="button" value="인풋 버튼이에용">
-        <button type="button" onclick="alert('안녕')">버튼 버튼이에용</button>
+        <input type="button" value="인풋 타입이 버튼이에용">
+        <button type="button" onclick="alert('안녕')">타입이 버튼에 온클릭=알러트 해놨어요</button>
         <button type="submit">제출용 버튼</button>
         <button type="reset">초기화용 버튼</button>
     </form>
@@ -62,12 +62,23 @@
     <form method="get" action="#">
         <fieldset>
             <legend>고객정보</legend>
-            <label for="c_name">고객명 : </label>
-            <input type="text" id="c_name"><br>
-            <label for="c_phone">전화번호 : </label>
-            <input type="text" id="c_phone"><br>
-            <label for="c_mail">E-mail : </label>
-            <input type="text" id="c_mail"><br>
+            <table>
+                <tr>
+                    <td><label for="c_name">고객명 : </label></td>
+                    <td><input type="text" id="c_name"></td>
+                </tr>
+                <tr>
+                    <td><label for="c_phone">전화번호 : </label></td>
+                    <td><input type="text" id="c_phone"></td>
+                </tr>
+                <tr>
+                    <td><label for="c_mail">E-mail : </label></td>
+                    <td><input type="text" id="c_mail"><br></td>
+                </tr>
+            </table>
+            
+            
+            
         </fieldset>
         <fieldset>
             <legend>피자 사이즈</legend>
@@ -91,7 +102,7 @@
         </fieldset>
         <br>
         <label for="delivTime">희망 배송 시간 : </label>
-        <input type="time" id="delivTime">
+        <input type="time" id="delivTime" name="delivTime">
         <br>
         <button>주문하기</button>
     </form>
