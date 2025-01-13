@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>폼태그(2)</title>
+</head>
+<body>
+    <input type="color" id="head" name="head" value="#e66465">
+    <input type="number" min="3" max="10" step="2">
+    <input type="range" min="3" max="10" step="2">
+    <!-- step = 숫자 몇씩 증감 할건지 -->
+    
+    <textarea name="" id="" cols="20" rows="3">
+        가나다라
+    </textarea>
+    <!-- 날짜 -->
+    <!-- min, max 이런 것들을 "유효성" 이라고 한다. -->
+    <input type="date" min="2025-01-01" max="2025-01-13" value="2025-01-13">
+    <input type="month" min="2025-10">
+    <!-- time 타입은 항상 24시간 기준으로 입력해야한다 -->
+    <input type="time" value="16:10">
+    <!-- <input type="date" min="0001-01-01" max="9999-01-13"> -->
+    <br>
+    <!-- checkbox : name이 같은 '여러개 값' 선택 -->
+    <!-- 백엔드로 key값이 lunch이면서 [1,2] 배열로 들어간다. -->
+    <input type="checkbox" value="1" id="jja" name="lunch">
+    <label for="jja">짜장면</label>
+    <input type="checkbox" value="2" id="bok" name="lunch">
+    <label for="bok">볶음밥</label>
+    <br>
+    <!--  radio : 'name이 같은 것' 중에 하나만 -->
+    <input type="radio" value="1" id="seoul" name="addr">
+    <label for="seoul">서울</label>
+    <input type="radio" value="2" id="sanbon" name="addr">
+    <label for="sanbon">산본</label>
+    <br>
+    <!-- select :  -->
+    <select name="user_select" id="user_select">
+        <option value="">선택하기</option>
+        <option value="1">피카츄</option>
+        <option value="2">파이리</option>
+        <option value="3">꼬부기</option>
+        <option value="4">이상해씨</option>
+    </select>
+    <br>
+    <!-- progress -->
+    <!-- JavaScript 사용해서 value 1초에 1씩 늘어나게 설정 가능 -->
+    <progress max="100" value="70"></progress>
+    <br>
+    <!-- button -->
+    <!-- button의 type은 디폴트가 submit이다!! -->
+    <form method="get" name="testFrm" action="#">
+        <input type="text" required><br>
+        <input type="button" value="인풋 버튼이에용">
+        <button type="button" onclick="alert('안녕')">버튼 버튼이에용</button>
+        <button type="submit">제출용 버튼</button>
+        <button type="reset">초기화용 버튼</button>
+    </form>
+
+    <h2>피자 주문하기</h2>
+    <form method="get" action="#">
+        <fieldset>
+            <legend>고객정보</legend>
+            <label for="c_name">고객명 : </label>
+            <input type="text" id="c_name"><br>
+            <label for="c_phone">전화번호 : </label>
+            <input type="text" id="c_phone"><br>
+            <label for="c_mail">E-mail : </label>
+            <input type="text" id="c_mail"><br>
+        </fieldset>
+        <fieldset>
+            <legend>피자 사이즈</legend>
+            <input type="radio" id="p_Small" value="1" name="pizza_size">
+            <label for="p_Small">Small</label><br>
+            <input type="radio" id="p_Medium" value="2" name="pizza_size">
+            <label for="p_Medium">Medium</label><br>
+            <input type="radio" id="p_Large" value="3" name="pizza_size">
+            <label for="p_Large">Large</label><br>
+        </fieldset>
+        <fieldset>
+            <legend>토핑 선택</legend>
+            <input type="checkbox" id="shrimp" value="1" name="pizza_topping">
+            <label for="shrimp">새우</label><br>
+            <input type="checkbox" id="sweetpotato" value="2" name="pizza_topping">
+            <label for="sweetpotato">고구마</label><br>
+            <input type="checkbox" id="potato" value="3" name="pizza_topping">
+            <label for="potato">감자</label><br>
+            <input type="checkbox" id="pepperoni" value="4" name="pizza_topping">
+            <label for="pepperoni">페퍼로니</label><br>
+        </fieldset>
+        <br>
+        <label for="delivTime">희망 배송 시간 : </label>
+        <input type="time" id="delivTime">
+        <br>
+        <button>주문하기</button>
+    </form>
+</body>
+</html>
