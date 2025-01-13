@@ -70,16 +70,17 @@
         </fieldset>
     </form>
     <br>
+    <h2>회원가입</h2>
     <form method="get" action="#">
         <fieldset style="border-color: black;">
             <legend>필수 정보</legend>
             <label for="a_name">이름</label>
-            <input type="text" id="a_name">
+            <input type="text" required id="a_name">
             <br>
             <label for="a_id">아이디</label>
-            <input type="text" id="a_id">
+            <input type="text" required id="a_id">
             <br><label for="a_pw">비밀번호</label>
-            <input type="password" id="a_pw">
+            <input type="password" required id="a_pw">
             <br>
         </fieldset>
         <fieldset style="border-color: black;">
@@ -90,7 +91,7 @@
             <label for="a_email">이메일</label>
             <input type="email" id="a_email">
             <br><label for="a_profile">프로필</label>
-            <input type="file" id="a_profile">
+            <input type="file" id="a_profile" accept=".jpg,.png">
             <br>
         </fieldset>
         <br>
