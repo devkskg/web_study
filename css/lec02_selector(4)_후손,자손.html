@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>후손, 자손 선택자</title>
+    <style>
+        /* 후손 선택자 */
+        div.container > h1 {background-color: aqua;}
+        /* 자손 선택자 */
+        div.container h1{color: orange;}
+        .container a[href="lec01_basic.html"]{background-color: bisque;}
+        .container > div > ul > a{color: brown;}
+    </style>
+</head>
+<body>
+    <!-- 클래스 선택 안해주면 바디 전체의 div 아래있는 h1이 색깔 바뀐다(셋째의 첫째) -->
+    <div class="container">
+        <h1>첫째</h1>
+        <p>둘째</p>
+        <div>
+            셋째
+            <h1>셋째의 첫째</h1>
+            <ul>
+                <li>셋째의 둘째의 첫째</li>
+                <li>
+                    <a href="lec01_basic.html">
+                        셋째의 둘째의 둘째의 첫째
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+
+    <style>
+        /* div.test a[href="#"]{color: yellow;} */
+        a[id="ul1li3"]{color: yellow; font-weight: bold;}
+        /* div.test li{background-color: green;} */
+        div.test>ul>li{background-color: green; text-decoration: underline;}
+        /* div.test ul{background-color: green;} */
+        /* div{font-size: 25px;} */
+    </style>
+    <div class="test">
+        <h1>제목</h1>
+        <ul>
+            <li>목록 1번</li>
+            <li>목록 2번</li>
+            <li><a href="#" id="ul1li3">목록 3번 링크</a></li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>부정 선택자</title>
+    <style>
+        /* 컨테이너 -> n클래스 중에 span이 아닌 요소만! */
+        #container > .n:not(span){background-color: aqua;}
+        /* #container > .n{background-color: aqua;} */
+
+        /* 이거는 div가 색깔을 먹어버린다. */
+        /* :not(p){color: crimson;} */
+        #container > :not(p){color: crimson;}
+    </style>
+</head>
+<body>
+    <div id="container">
+        <p>printing and typesetting industry</p>
+        <p class="n">printing and typesetting industry</p>
+        <span class="n">printing and typesetting industry</span>
+        <div>printing and typesetting industry</div>
+    </div>
+
+    <!-- 선택자 우선순위가 있다. -->
+    <style>
+        h1{background-color: blue;}
+        h1{background-color: red;}
+    </style>
+    <h1>확인</h1>
+
+    <style>
+
+        p{background-color: red;}
+        .abc{background-color: chocolate;}
+        #abc{background-color: yellow;}
+        p{ background-color: blue !important;}
+    </style>
+    <p class="abc" id="abc" style="background-color: green;">우선순위</p>
+
+
+
+
+
+
+</body>
+</html>

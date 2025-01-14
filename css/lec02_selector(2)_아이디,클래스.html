@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>아이디, 클래스 선택자</title>
+</head>
+<body>
+    <h1>아이디 선택자 : #</h1>
+    <h2>클래스 선택자 : .</h2>
+    <style>
+        .many{background-color: rgb(216, 111, 146);}
+        #only{background-color: burlywood;}
+    </style>
+    <table border="1">
+        <caption>테이블</caption>
+        <tr>
+            <td class="many">1</td>
+            <td id="only">2</td>
+            <td class="many">3</td>
+        </tr>
+        <tr>
+            <td class="many">4</td>
+            <td>5</td>
+            <td>6</td>
+        </tr>
+    </table>
+
+    <!-- 아이디 클래스 연습 -->
+    <style>
+        #greenonion{background-color: green;}
+        .egg{background-color: yellow;}
+    </style>
+    <h1>&nbsp;&nbsp;계란말이</h1>
+    <ol>
+        <!-- a말고 강사님 방법인 span 쓰는 게 더 좋을 듯 -->
+        <li><a class="egg">계란</a>을 깨서 섞어주세요.</li>
+        <li><a id="greenonion">파</a>를 잘게 썰어서 섞어주세요.</li>
+        <li>프라이팬에 <a class="egg">계란</a>을 부어 익혀주세요.</li>
+        <li>익힌 <a class="egg">계란</a>을 말아주세요.</li>
+    </ol>
+</body>
+</html>
