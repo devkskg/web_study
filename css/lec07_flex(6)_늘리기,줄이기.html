@@ -7,7 +7,14 @@
     <style>
         .container{
             background-color: lightblue;
-            width: 300px;
+            width: 900px;
+            display: flex;
+            /* 
+            flex-direction : row;
+            flex-wrap : nowrap;
+            justify-content : flex-start;
+            align-items : stretch;
+            */
         }
         .item{
             background-color: lightpink;
@@ -19,7 +26,11 @@
     <h1>grow 0 , shrink 0</h1>
     <style>
         #zerozero > .item{
-
+            /* flex-basis: 300px;
+            flex-grow: 0;
+            flex-shrink: 0; */
+            flex: 0 0 300px;
+            /* 이렇게 줄여 쓰기도 한다. */
         }
     </style>
     <div class="container" id="zerozero">
@@ -30,7 +41,11 @@
     <h1>grow : 0, shrink : 1</h1>
     <style>
         #zeroone > .item{
-
+            flex-basis: 300px;
+            flex-grow: 0;
+            /* flex-shrink: 0.3; */
+            flex-shrink: 1;
+            /* 1은 부모에 맞춰서 줄어들겠다! */
         }
     </style>
     <div class="container" id="zeroone">
@@ -41,7 +56,9 @@
     <h1>grow : 1 , shrink : 0</h1>
     <style>
         #onezero > .item{
-
+            flex-basis: 300px;
+            flex-grow: 1;
+            flex-shrink: 0;
         }
     </style>
     <div class="container" id="onezero">
@@ -51,8 +68,11 @@
     </div>
     <h1>grow : 1, shrink : 1</h1>
     <style>
+        /* 보통 1,1을 써야 안에 맞추기 좋더라 */
         #oneone > .item{
-
+            flex-basis: 300px;
+            flex-grow: 1;
+            flex-shrink: 1;
         }
     </style>
     <div class="container" id="oneone">

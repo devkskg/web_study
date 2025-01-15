@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lec08_back.html</title>
+    <style>
+        body{background-image: url('../resources/sponge.png');
+        background-size: 10%}
+    </style>
+</head>
+<body>
+    <h1>배경색</h1>
+    <style>
+        .container{
+            width: 400px; height: 400px;
+            border: 2px dotted hotpink;
+        }
+        /* .bgcolor{background-color: #3515;} */
+        .bgcolor{background-color: rgba(140 , 121, 45, 0.3);}
+    </style>
+    <div class="container bgcolor">
+        여기에 배경색 지정
+    </div>
+    
+
+    <style>
+        .bgimg{
+            background-image:url('../resources/sponge_list.png');
+            background-repeat: no-repeat;
+            /* 수평 : left, center, right
+            수직 : top, center, bottom */
+            /* position 설정시!!!! 수평 설정시 수평 가운데
+             수직 설정시 수직 위치 디폴트는 가운데 */
+
+            /* 수평 수직, 숫자(px)나 퍼센트로 바로 설정 가능 */
+            background-position: 25% 75%;
+            background-attachment: scroll;
+    }
+    </style>
+    <h1>배경 이미지</h1>
+    <div class="container bgimg">
+        배경에 이미지 넣기
+    </div>
+
+
+    <style>
+        .bgsize{
+            /* 커버와 컨테인은 무슨차이?
+                커버는 잘라서라도 가로부분 꽉 채우기
+                컨테인은 안 잘리고 들어가기 */
+            /* 퍼센트는 가로, 세로 쓸 수 있다. */
+            /* auto, contain, cover, px/% */
+            background-size: 5%;
+        }
+    </style>
+    <div class="container bgsize" 
+    style="background-image: url('../resources/sponge.png');
+    ">
+        왕 큰 스폰지밥
+    </div>
+
+
+    <style>
+        .boder_parent > div{
+            width: 100px; height: 100px;
+
+        }
+    </style>
+    <h1>테두리</h1>
+    <!-- "border-style: dotted;
+    border-color: yellow; -->
+    <div class="boder_parent">
+        <div style="
+        border: 4px dotted yellow;">
+            사방이 점선
+        </div>
+        <br>
+        <div style="border-top-style: double;
+        border-bottom-style: dotted;
+        border-top-width: 5px;
+        border-bottom-style: 2px;
+        border-top-color: brown;
+        border-bottom-color: gold;
+        border-left: 3px solid crimson;
+        border-right: 5px dotted green;">
+        위에는 이중선, 밑에는 점선
+    </div>
+    </div>
+
+    <h1>모서리 둥글게</h1>
+    <style>
+        #target{
+            width: 50px;
+            border: 3px solid teal;
+            /* border-radius: 100%; */
+            border-top-left-radius: 10%;
+            border-top-right-radius: 20%;
+            border-bottom-left-radius: 30%;
+            border-bottom-right-radius: 40%;
+        }
+    </style>
+    <img id="target" src="../resources/dung.png" alt="">
+
+    <h1>테이블</h1>
+    <style>
+        table > caption{caption-side: bottom;}
+        table{
+            width: 800px; height: 400px;
+            border: 5px solid tomato;
+            border-collapse: collapse;
+            /* collapse는 테이블 스타일에다가 써줘아한다. */
+        }
+        table td{
+            border: 5px dotted rebeccapurple;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+    </style>
+    <table>
+        <caption>개인정보</caption>
+        <tbody>
+            <tr>
+                <td style="width: 100px;">1</td>
+                <td>
+                    <img id="target" src="../resources/dung.png" alt="">
+                </td>
+                <td>뚱이</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>
+                    <img id="target" src="../resources/sponge.png" alt="">
+                </td>
+                <td>스폰지밥</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>5ㄱ호 ㄷㄱ소 3ㅈ67 ㅕㅓㅅㅀㄴㄹㄶ </td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
