@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lec05_rayout.html</title>
+</head>
+<body>
+    <h1>가로,세로 설정</h1>
+    <style>
+        .container{
+            border: 2px dotted crimson;
+        }
+        .absize{width: 100px; height: 100px;}
+        .resize{width: 3vw; height: 10vh;}
+    </style>
+    <!-- 하나의 태그가 여러개의 클래스를 가지는 방법 -->
+    <div class="container absize">
+        절대크기
+    </div>
+    <div class="container resize">
+        상대크기
+    </div>
+
+    <!-- 블록 인라인 -->
+    <h1>블록 vs 인라인</h1>
+    <style>
+        .container > img{width: 200px; height: 200px;}
+        /* 인라인 요소는 이미지를 제외하고 가로세로 설정 못한다. */
+        /* .container span{width: 500px; height: 500px;} */
+        .container span:hover{background-color: black;}
+        .container span{border: 1px solid purple;}
+        .container h3{
+            border: 1px solid purple;
+            width: 200px; height: 200px;
+        }
+        /* display!!!!!! */
+        /* .container > span{display: block;} */
+        /* inline-block은 좌우로 붙이는 느낌! */
+        .container > h3{display: inline-block;}
+    </style>
+    <div class="container">
+        <!-- 이미지는 인라인 요소이긴한데 예외적으로 가로세로 정할 수 있다. -->
+        <img src="../resources/sponge.png" alt="스폰지밥이 웃고있어요">
+        <span>inline 대표</span>
+    </div>
+    <div class="container">
+        <h3>block 대표</h3>
+        <h3>block 대표</h3>
+    </div>
+    <!-- display -->
+    <h1>display 프로퍼티</h1>
+    <button id="showBtn">있다없으니까</button><br>
+    <img id="showImg" src="../resources/dung.png" alt="뚱이가 두 팔을 올리고 웃고 있습니다." width="150" style="display: block;">
+    <script>
+        document.getElementById('showBtn').onclick = function(){
+            console.log(document.getElementById('showImg').style.display);
+            document.getElementById('showImg').style.display='none';
+        }
+    </script>
+    <!-- 여백 -->
+    <h1>여백</h1>
+    <style>
+        .sub{border: 2px solid blue;
+            padding: 30px 10px 50px 4px;
+            margin: 30px 20px 5px 40px;
+        }
+    </style>
+    <div class="container">
+        <div class="sub">
+            여기가 콘텐츠 입니다.
+        </div>
+        <span class="sub">inline 요소 대표</span>
+    </div>
+
+    <!-- CSS의 상속 -->
+    <h1>CSS의 상속</h1>
+    <style>
+        .parent{
+            font-family: '궁서';
+            color: green;
+            padding: 30px;
+        }
+        
+    </style>
+    <div class="parent">
+        <div class="child1">자식1</div>
+        <a class="child2" href="#">자식2</a>
+        <div class="child3">자식3</div>
+    </div>
+</body>
+</html>
