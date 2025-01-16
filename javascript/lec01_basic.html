@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lec01_basic.html</title>
+</head>
+<body>
+
+    <h1>인라인(inline)</h1>
+    <button type="button" onclick="alert('오하요');">
+        내장함수
+    </button>
+    <button type="button" onclick="userFunc();">
+        사용자 정의 함수
+    </button>
+    <script>
+        /*블록 주석 똑같구만*/
+        // 자바스크립트 함수 포맷. 인터널 방식으로 함수 선언(public static void 이런 거 없다.)
+        function userFunc(){
+            console.log('방가방가');
+        }
+    </script>
+
+    <h2>인터널(internal)</h2>
+    <button type="button" id="inBtn">
+        인터널 버튼
+    </button>
+    <script>
+        document.getElementById('inBtn').onclick 
+            = function(){
+                alert('Hi~Hello~')
+            }
+    </script>
+
+    <h2>익스터널(external)</h2>
+    <button type="button" id="exBtn">
+        익스터널 버튼
+    </button>
+    <script src="../resources/sample.js"></script>
+
+    <h2>데이터 입출력</h2>
+    <h3>console.log();</h3>
+    <button type="button" onclick="printConsole();">
+        콘솔 테스트
+    </button>
+    <script>
+        function printConsole(){
+            console.log('Hello World!');
+        }
+    </script>
+
+    <!-- 연습 -->
+    <h1>콘솔로그</h1>
+    <button type="button" onclick="whatIsMyName();">
+        나의 이름은?
+    </button>
+    <script>
+        function whatIsMyName(){
+            console.log('강성관이오');
+        }
+    </script>
+
+
+
+
+    <h3>얼럿(알림)</h3>
+    <button type="button" onclick="printAlert();">
+        얼럿 테스트
+    </button>
+    <script>
+        function printAlert(){
+            alert('헬로 월드');
+        }
+    </script>
+
+
+
+<!-- 연습 -->
+    <h1>오늘 날짜</h1>
+    <button type="button" onclick="printDate();">
+        오늘 날짜
+    </button>
+    <script>
+        function printDate(){
+            alert('2025-01-16');
+        }
+    </script>
+
+
+
+    <h2>프롬프트</h2>
+    <input type="button" value="이름 입력" onclick="insertName();">
+    <script>
+        function insertName(){
+            // 기본값을 홍길동으로 설정하면 미리 값이 들어가있다.
+            var name = prompt('이름을 입력하세요.', '홍길동');
+            console.log(name);
+
+        }
+    </script>
+
+
+
+
+    <!-- 연습하기 -->
+    <h1>어디야?</h1>
+    <button type="button" onclick="whereSeat();">위치</button>
+    <script>
+        function whereSeat(){
+            var seat = prompt('어디에 있으세요?');
+            console.log(seat);
+        }
+    </script>
+
+</body>
+</html>
