@@ -108,10 +108,69 @@
     <button type="button" onclick="whereSeat();">위치</button>
     <script>
         function whereSeat(){
+            // 변수를 선언해서 할 수도있고, 인자 쪽에 바로 넣어도 상관 없다.
             var seat = prompt('어디에 있으세요?');
             console.log(seat);
         }
     </script>
+
+
+
+
+    <h2>컨펌</h2>
+    <button type="button" onclick="printYesOrNo();">확인받기</button>
+    <script>
+        function printYesOrNo(){
+            var flag = confirm('ChatGPT가 세상을 지배했습니까?');
+            // console.log(flag);
+            if(flag == true){
+                console.log('인간 시대의 끝이 도래했다.');
+            } else{
+                console.log('존 코너는 실존한다.');
+            }
+        }
+    </script>
+
+
+    <!-- 연습하기 -->
+    <h1>오늘의 요일은?</h1>
+    <button type="button" onclick="toDaysunDay();">일요일</button>
+    <script>
+        function toDaysunDay(){
+            var flag = confirm('오늘은 일요일인가요?');
+            if(flag == true){
+                console.log('O');
+            } else{
+                console.log('X');
+            }
+        }
+    </script>
+
+
+
+    <h2>도큐먼트 라이트</h2>
+    <button type="button" onclick="printTag();">내가 사라져볼게~</button>
+    <script>
+        function printTag(){
+            document.write('<h1>얍!</h1>');
+            // document.write('얍!얍!얍!얍!얍!');
+            // document.write('123123123');
+        }
+    </script>
+
+
+
+
+
+    <!-- 연습 -->
+    <h1>제목출력</h1>
+    <button type="button" onclick="printTitle();">제목 출력</button>
+    <script>
+        function printTitle(){
+            document.write('<h1>제목은 역시 h1</h1>');
+        }
+    </script>
+
 
 </body>
 </html>

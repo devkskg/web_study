@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>id 기준 접근</h2>
+    <div id="idTarget">
+        변경전
+    </div>
+    <button type="button" onclick="beTheRed();">빨갛게</button>
+    <script>
+        function beTheRed(){
+            var it = document.getElementById('idTarget');
+            it.style.color = 'red';
+        }
+    </script>
+
+    <h2>class 기준 접근</h2>
+    <p class="a">p1</p>
+    <span class="b a">span1</span>
+    <p class="b">p2</p>
+    <input type="button" value="a만" onclick="changeOnlyA();">
+    <script>
+        function changeOnlyA(){
+            var el = document.getElementsByClassName('a');
+            console.log(el);
+            // 1. 인덱스
+            el[0].style.color = 'hotpink';
+            // 2. 반복문(int 말고 var)
+            for(var i = 0; i < el.length; i++){
+                if(i == 0){
+                    el[i].style.color = 'red';
+                } else{
+                    el[i].style.color = 'green';
+                }
+            }
+        }
+    </script>
+
+
+    <h2>태그명 기준 접근</h2>
+    <ul>
+        <li>HTML5</li>
+        <li>CSS3</li>
+        <li>ES6</li>
+    </ul>
+    <button type="button" onclick="changeJSBlue();">JS 조아~</button>
+    <script>
+        function changeJSBlue(){
+            var el = document.getElementsByTagName('li');
+            console.log(el);
+            el[2].style.color = 'blue';
+        }
+    </script>
+
+    <h2>name 속성 기준 접근</h2>
+    <label>
+        <input type="checkbox" name="food" value="1">
+        짜장면
+    </label>
+    <label for="">
+        <input type="checkbox" name="food" value="2">
+        짬뽕
+    </label>
+    <label for="">
+        <input type="checkbox" name="food" value="3">
+        군만두
+    </label>
+    <button type="button" onclick="addReview();">리뷰 이벤트 참여</button>
+    <script>
+        function addReview(){
+            var el = document.getElementsByName('food');
+            console.log(el);
+            var checkStatus = el[2].checked;
+            if(checkStatus){
+                el[2].checked = false;
+            }else{
+                el[2].checked = true;
+            }
+        }
+    </script>
+
+
+<!-- 이거 왜 안됨? -->
+    <h2>선택자 기준 접근</h2>
+    <button type="button" onclick="practiceQuery();">
+        접근하기
+    </button>
+    <script>
+        function practiceQuery(){
+            var one = document.querySelector('#idTarget')
+            one.style.color = 'orange';
+            var many = document.querySelectorAll('.b');
+            many[0].style.color='red';
+        }
+    </script>
+
+    <h2>value 속성 사용하기</h2>
+    <input type="text" id="userName">
+    <button type="button" id="getNameBtn">가져오기</button>
+    <button type="button" id="setNameBtn">바꿔주기</button>
+    <script>
+        document.getElementById('getNameBtn').onclick = function(){
+            var userName = document.getElementById('userName').value;
+            alert(userName);
+        }
+        document.getElementById('setNameBtn').onclick = function(){
+            document.getElementById('userName').value = '김철수';
+            // document.getElementById('userName').value += '김철수';
+
+        }
+    </script>
+
+    <h2>style 속성 활용하기</h2>
+    <!-- <style>
+        #styleBtn{background-color: red;}
+    </style> -->
+    <input style="background-color: red;" id="styleBtn" type="button" value="스타일 변신" onclick="changeStyle();">
+
+    <script>
+        function changeStyle(){
+            // console.log('함수연결 확인');
+            var st1 = document.getElementById('styleBtn').style.backgroundColor;
+            
+            // 변수를 이렇게 설정해주고
+            var ele2 = document.getElementById('styleBtn');
+            // 설정한 변수를 이렇게 넣는다.
+            var st2 = getComputedStyle(ele2).backgroundColor;
+
+            console.log(st1);
+            // if(st1 == 'red'){
+            //     document.getElementById('styleBtn').style.backgroundColor = 'blue';
+            // } else if(st1 == 'blue') {
+            //     document.getElementById('styleBtn').style.backgroundColor = 'green';
+            // } else if(st1 == 'green') {
+            //     document.getElementById('styleBtn').style.backgroundColor = 'red';
+            // }
+            ele2.style.backgroundColor = 'gold';
+        }
+    </script>
+    <h1>문제요~</h1>
+    <input type="color" id="incolor">
+    <button type="button" id="bts1" onclick="changeColor();">변경</button>
+    <br>
+    <br>
+    <div id="dv1" style="background-color: rgb(66, 126, 126); width:100px; height: 100px;" ></div>
+    <script>
+        function changeColor(){
+            var c1 = document.getElementById('incolor').value;
+            console.log(c1);
+            document.getElementById('dv1').style.backgroundColor = c1;
+        }
+    </script>
+    <br>
+    <button value="50px" type="button" class="bts" id="10px" onclick="changeSize(10);">50x50</button>
+    <button value="100px" type="button" class="bts" id="sizebtn2" onclick="changeSize(20);">100x100</button>
+    <button value="200px" type="button" class="bts" id="sizebtn3" onclick="changeSize(30);">200x200</button>
+    <!-- <input name="500px" type="button" class="bts" value="sdf" onclick="changeSize();"> -->
+    <br>
+    <br>
+    <div id="sizeDv" style="width: 100px; height: 100px; background-color: maroon;"></div>
+    <script>
+        // var size1 = '50px';
+        // var size2 = '100px';
+        // var size3 = '200px';
+        var size11 = document.getElementsByClassName('.bts').value;
+        function changeSize(id){
+            // var inza = document.getElementsByClassName('.bts').value;
+            // var abc = document.getElementsByClassName('.bts').Name;
+            // console.log(abc);
+            document.getElementById('sizeDv').style.width = id+'px';
+            document.getElementById('sizeDv').style.height = id+'px';
+            console.log(size11);
+            console.log('sd');
+        }
+
+        
+        // function changeSize1(){
+        // document.getElementById('sizeDv').style.width = '50px';
+        // document.getElementById('sizeDv').style.height = '50px';
+        // }
+        // function changeSize2(){
+        // document.getElementById('sizeDv').style.width = '100px';
+        // document.getElementById('sizeDv').style.height = '100px';
+        // }
+        // function changeSize3(){
+        // document.getElementById('sizeDv').style.width = '200px';
+        // document.getElementById('sizeDv').style.height = '200px';
+        // }
+    </script>
+
+
+    <h2>innerHTML</h2>
+    <div id="test1">
+        <p>
+            Hello!<a href="#">sdf</a>
+        </p>
+    </div>
+    <div id="test2">안녕하세요~</div>
+    <input type="button" value="가져오기" onclick="getTag();">
+    <input type="button" value="바꿔주기" onclick="setTag();">
+    <script>
+        function getTag(){
+            var t1 = document.getElementById('test1').innerHTML;
+            var t2 = document.getElementById('test2').innerHTML;
+            console.log(t1);
+            console.log(t2);
+        }
+
+        // =이랑 +=이랑 다르니까 조심하자
+        // 열어 보기 기능 이걸로 해도 괜찮겠는데?
+        // += 하니까 계속 누르니까 계속 나오는데..?
+        function setTag(){
+            document.getElementById('test1').innerHTML += '<h1>이거 진짜 바뀌나요?</h1>';
+        }
+    </script>
+    
+</body>
+</html>
