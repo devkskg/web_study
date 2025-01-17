@@ -217,6 +217,31 @@
             document.getElementById('test1').innerHTML += '<h1>이거 진짜 바뀌나요?</h1>';
         }
     </script>
+
+<h2>innerText</h2>
+<div id="test3">
+    <p>
+        가!<a href="#">나</a>
+    </p>
+</div>
+<div id="test4">다</div>
+<input type="button" value="가져오기" onclick="getText();">
+<input type="button" value="바꿔주기" onclick="setText();">
+<script>
+    function getText(){
+        var t1 = document.getElementById('test3').innerText;
+        var t2 = document.getElementById('test4').innerText;
+        console.log(t1);
+        console.log(t2);
+    }
+
+    // =이랑 +=이랑 다르니까 조심하자
+    // 열어 보기 기능 이걸로 해도 괜찮겠는데?
+    // += 하니까 계속 누르니까 계속 나오는데..?
+    function setText(){
+        document.getElementById('test3').innerText += '<h1>아 이거 태그 안먹는구나</h1>';
+    }
+</script>
     
 </body>
 </html>
