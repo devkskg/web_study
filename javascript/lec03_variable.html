@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>변수</title>
+</head>
+<body>
+    <input type="button" value="지역 변수 부르기" onclick="localFunc();">
+    <script>
+        // 1. 변수 선언
+        var test;
+        // 2. 변수 할당
+        test = 'JavaScript';
+        var test2 = 'JS';
+        // 지역 vs 전역
+        function localFunc(){
+            var localVar = '나는 지역변수야~';
+            console.log(localVar);
+        }
+        // console.log(localVar);
+        console.log(globalVar);
+
+        var globalVar = 'I AM GLOBAL';
+        function globalTest(){
+            console.log(globalVar);
+        }
+        // console.log(globalVar);
+        for(var i = 0; i < 4; i++){
+            console.log(i + " 번째 안쪽");
+        }
+        console.log("바깥쪽 ~ " + i);
+    </script>
+    <input type="button" value="전역 변수 부르기" onclick="globalTest();">
+
+    <script>
+        // 4. let과 const (둘 다 블록 스코프)
+        if(true){
+            let x = 20;
+            console.log(x);
+        }
+        // console.log(x); -- let은 블록 스코프여서 밖에서는 선언되지 않은 상태 - 오류 뜬다!
+        // console.log(y); -- let은 호이스팅이 불가능한 변수 키워드 - 오류 뜬다!
+        let y = 30;
+        console.log(y);
+
+        // console.log(pi); -- cont는 호이스팅이 불가능한 변수 키워드 - 오류 뜬다!
+        const pi = 3.14;
+        console.log(pi);
+        // pi = 3.141592653578; -- cont는 재할당 불가능한 변수 키워드 - 오류 뜬다!
+    </script>
+
+    <input type="button" value="자료형 확인" onclick="checkType();">
+
+    <script>
+        function checkType(){
+            console.log(typeof(insa));
+            console.log(typeof(name));
+            console.log(typeof(num));
+            console.log(typeof(price));
+            console.log(typeof(isAdmin));
+            console.log(typeof(person));
+            console.log(typeof(add1));
+            console.log(typeof(sum));
+        }
+        // 5. 자료형
+        let insa = 'HI';
+        let name = "김철수";
+        let num = 1234;
+        let price = 12.34;
+        let isAdmin = false;
+        let person ={
+            name : '홍길동',
+            age : 30,
+            sayHi : function(){
+                console.log('안녕하세요');
+            }
+        };
+        console.log(person);
+
+        function add1(a,b){
+            return a+b;
+        }
+        let sum = add1(5,3);
+        console.log(sum);
+        console.log(insa + num);
+    </script>
+
+    <script>
+        // 6. falsy - 논리연산에서 false로 평가되는 값
+        // falsy : 0, "", null, undefined, NaN(Not a Number)
+        if(NaN && undefined){
+            console.log('O');
+        } else{
+            console.log('X');
+        }
+
+    </script>
+    <h1>형변환</h1>
+    <input type="button" value="문자+숫자" onclick="strPlustNum();">
+    <script>
+        function strPlustNum(){
+            let num1 = 30;
+            let num2 = '30';
+            console.log(typeof(num1), typeof(num2))
+            if(num1 == num2){ // if문 할때도 문제네!!
+                console.log('이게 맞다구요?');
+            }
+            console.log(num1 + num2); // 더하기도 문제네!!
+            console.log(num1 - num2);
+            console.log(num1 * num2);
+            console.log(num1 / num2); // JS에서 나누기는 소수점도 나오는구나~
+            console.log(num1 % num2);
+            console.log(num1 * 'test'); // NaN 뜬다!
+        }
+    </script>
+    <h1>강제 형변환</h1>
+    <label for="numInput">숫자 : </label>
+    <input type="number" id="numInput">
+    <button type="button" onclick="convertNumToStr();">문자 -> 숫자</button>
+    <!-- 애초에 input으로 숫자를 받으면 문자열을 받네 -->
+    <script>
+        function convertNumToStr(){
+            let numVal = document.getElementById('numInput').value;
+            console.log('type=number로 받은 숫자 :' ,numVal, typeof(numVal));
+            // number 타입 value는 string이다!!
+            let numVal2 = Number(numVal);
+            console.log('문자 -> 숫자로 형변환 :' ,numVal2, typeof(numVal2));
+
+            // 아래는 숫자-> 문자 연습용
+            let strVal = numVal2.toString();
+            console.log('숫자 -> 문자 형변환 :' ,strVal, typeof(strVal));
+        }
+    </script>
+
+    <!-- 연습문제 -->
+    <h1>연습문제</h1>
+    <label for="firstNum" >첫번째 수 : </label>
+    <input id="firstNum" type="number">
+    <br>
+    <label for="secondNum" >두번째 수 : </label>
+    <input id="secondNum" type="number">
+    <button type="button" onclick="plusMethod();">더하기</button>
+    <script>
+        function plusMethod(){
+            let numA = document.getElementById('firstNum').value;
+            let numB = document.getElementById('secondNum').value;
+
+            let convNumA = Number(numA);
+            let convNumB = Number(numB);
+
+            alert(convNumA + convNumB);
+
+        }
+    </script>
+</body>
+</html>
