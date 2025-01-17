@@ -7,13 +7,97 @@
 </head>
 <body>
     <h1>1. 홀수? 짝수?</h1>
-    <button id="addBall" type="button">구슬 추가</button>
-    <button id="oddEvenBall" type="button">홀짝</button>
-    <button id="resetBall" type="button">초기화</button>
+    <button id="addBall" type="button" onclick="playBall(1);">
+        구슬 추가
+    </button>
+    <button id="oddEvenBall" type="button" onclick="playBall(2);">
+        홀짝
+    </button>
+    <button id="resetBall" type="button" onclick="playBall(3);">
+        초기화
+    </button>
     <br><br>
-    <div id="divBall">
-        <span style="border-radius: 100%; border: 5px solid aqua; background-color: aqua;">aa</span>
+    
+    <a id="hereBall">
         
-    </div>
+    </a>
+
+    <script>
+        let ballBall = '<div name=oneBall style="float: left; width: 50px; height: 50px; border-radius: 100%; border: 5px solid aqua; background-color: aqua;"></div>';
+        function playBall(flag){
+            if(flag == 1){
+                document.getElementById('hereBall').innerHTML += ballBall;
+            } else if(flag == 2){
+                // document.getElementById('hereBall').innerHTML
+                let countBall = document.getElementsByName('oneBall');
+                alert(countBall.length + '개의 공이 있습니다!');
+                // console.log(countBall.length);
+            } else if(flag == 3){
+                document.getElementById('hereBall').innerHTML = '';
+            }
+        }
+    </script>
+
+    <h1>계산기</h1>
+    <form action="">
+        <label for="num1">첫번째 값 : </label>
+        <input id="num1" type="number">
+        <br>
+        <label for="num2">두번째 값 : </label>
+        <input id="num2" type="number">
+        <br>
+        <button type="button" onclick="calc(1);">+</button>
+        <button type="button" onclick="calc(2);">-</button>
+        <button type="button" onclick="calc(3);">*</button>
+        <button type="button" onclick="calc(4);">/</button>
+        <button type="button" onclick="calc(5);">%</button>
+        <button type="button" onclick="calc(6);">초기화</button>
+        <hr>
+        <p id="result">계산 결과 : </p>
+        <script>
+            function calc(flag){
+                let a = document.getElementById('num1').value;
+                let b = document.getElementById('num2').value;
+
+                let convA = Number(a);
+                let convB = Number(b);
+                let returnThis = 0;
+                if(flag == 1){
+                    returnThis = convA + convB + '<br>';
+                } else if(flag == 2){
+                    returnThis = convA - convB + '<br>';
+                } else if(flag == 3){
+                    returnThis = convA * convB + '<br>';
+                } else if(flag == 4){
+                    returnThis = convA / convB + '<br>';
+                } else if(flag == 5){
+                    returnThis = convA % convB + '<br>';
+                } 
+                document.getElementById('result').innerHTML += returnThis;
+                // console.log(returnThis);
+                if(flag == 6){
+                    document.getElementById('result').innerHTML = '계산 결과 : ';
+                } 
+            }
+        </script>
+    </form>
+
+    <h1>문자 누적하기</h1>
+    <form action="">
+    <input id="firstStr" type="text">
+    <button type="reset" onclick="firstFunc();">누적</button>
+    </form>
+    <br>
+    <textarea name="area" id="secondStr" cols="29" rows="5"></textarea>
+
+    <script>
+        function firstFunc(){
+            let str1 = document.getElementById('firstStr').value;
+            document.getElementById('secondStr').innerHTML += str1;
+        }
+    </script>
+    
+    <br><br><br><br><br><br>
 </body>
 </html>
+
