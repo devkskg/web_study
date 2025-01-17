@@ -3,9 +3,228 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>연산자</title>
 </head>
 <body>
-    
+    <h1>부호 연산자</h1>
+    <button type="button" onclick="signTest();">확인</button>
+    <script>
+        function signTest(){
+            let num = '100';
+            console.log(num, typeof(num));
+            // console.log(-num);
+            // 부호 뒤집기
+            num = -num;
+            console.log(num, typeof(num));
+            // console.log(-num);
+        }
+    </script>
+
+    <h1>부호 뒤집기</h1>
+    <input id="inputNum" type="number">
+    <button type="button" onclick="reversePlusMinus();">입력</button>
+    <script>
+        function reversePlusMinus(){
+            let a = document.getElementById('inputNum').value;
+            // a = -Number(a);
+            // Number로 형변환 안해도 부호 바꾸니까 그냥 Number형으로 알아서 바뀜
+            a = -a;
+            console.log(typeof(a));
+            alert(a);
+        }
+    </script>
+
+    <h1>논리 부정 연산자</h1>
+    <button type="button" onclick="sayNo()">
+        확인
+    </button>
+    <script>
+        function sayNo(){
+            let result = confirm('회원가입 하시겠습니까?');
+            console.log(!result);
+        }
+    </script>
+
+    <h1>증감 연산자</h1>
+    <button type="button" onclick="addTest1(1);">전위 연산</button>
+    <button type="button" onclick="addTest1(2);">후위 연산</button>
+    <script>
+        // flag를 사용해서 전위/후위 구분해주기
+        function addTest1(flag){
+            let a = 2;
+            let b = 0;
+            if(flag == 1){
+                b = ++a;
+            } else{
+                b = a++;
+            }
+                console.log("a:" + a + " b:" + b);
+        }
+        // function addTest2(){
+        //     let a = 2;
+        //     let b = 0;
+
+        //     b = a++;
+        //     console.log("a:" + a + " b:" + b);
+        // }
+    </script>
+
+    <!-- 연습문제 -->
+    <h1>더하고 빼고 해보자~</h1>
+    <h2 id="startZero">0</h2>
+    <button type="button" onclick="pushTheBtn(1);">+</button>
+    <button type="button" onclick="pushTheBtn(2);">-</button>
+    <br>
+    <input id="inputNo" type="number">
+    <button type="button" onclick="pushTheBtn(3);">합산</button>
+    <script>
+        function pushTheBtn(flag){
+            // 아무거나 골라써봐라~~~~~~~~~~
+            // let pp = document.getElementById('startZero').textContent;
+            // let pp = document.getElementById('startZero').innerText;
+            let pp = document.getElementById('startZero').innerHTML;
+            console.log(pp);
+            let covPp = Number(pp);
+            if(flag == 1){
+                covPp++;
+            } else if(flag == 2){
+                covPp--;
+            } else if(flag == 3){
+                let inputNo = document.getElementById('inputNo').value;
+                covinputNo = Number(inputNo);
+                covPp = covPp + covinputNo;
+            }
+            document.getElementById('startZero').textContent = covPp;
+        }
+    </script>
+
+    <h1>미니 계산기</h1>
+    <label for="number1">숫자 1 : </label>
+    <input type="number" id="number1">
+    <br>
+    <label for="number2">숫자 2 : </label>
+    <input type="number" id="number2">
+    <button type="button" onclick="calcNumber();">계산하기</button>
+    <hr>
+    <div id="calc_result">
+        
+    </div>
+    <script>
+        function calcNumber(){
+            // 1. 숫자 1의 정보 가져오기(#number1)
+            let one = document.querySelector('#number1').value;
+            // 2. 숫자 2의 정보 가져오기(#number2)
+            let two = document.querySelector('#number2').value;
+            // console.log(one , two); // 잘 가져왔나~
+            // 3. 산술 연산
+            one = Number(one);
+            two = Number(two);
+            // console.log(typeof(one)); // 형변환 잘 됐나~
+            let plus = one + two;
+            let minus = one - two;
+            let gob = one * two;
+            let na = one / two;
+            let left = one % two;
+
+            // 계산기랑 상관없이 복합대입 연산자 연습.
+            // plus += 3;
+
+
+            // 4. 연산 결과를 #calc_result에 출력
+            // document.querySelector('#calc_result').innerHTML = "+ : " + plus + "<br>"
+            //     + "- : " + minus + "<br>"
+            //     + "* : " + gob + "<br>"
+            //     + "/ : " + na + "<br>"
+            //     + "% : " + left;
+
+            document.querySelector('#calc_result').innerHTML = 
+            `+ : ${plus} <br>
+            - : ${minus} <br>
+            * : ${gob} <br>
+            / : ${na} <br>
+            % : ${left} <br>`;
+            // 제이 쿼리의 $ 기호와 충돌 날 가능성이 높다.
+        }
+    </script>
+    <!-- <script>
+        if(30 == ' 30   '){
+            console.log('saassdfsdfdf');
+        }
+        
+    </script> -->
+
+    <h1>비교 연산자</h1>
+    <input type="button" value="비교 연산자" onclick="compareFunc();">
+    <script>
+        function compareFunc(){
+            let a = 1 == '1';
+            let b = 1 === '1';
+            console.log(a, b);
+            // 동등연산자(==)와 일치연산자(===)
+            // 결과가 다르거나 같거나 규칙X
+        }
+    </script>
+    <h1>부등호</h1>
+    <input type="number" name="int" id="int1">
+    <input type="number" name="int" id="int2">
+    <button type="button" onclick="compareNum();">부등호</button>
+    <script>
+        function compareNum(){
+            // 1. id가 int1인 요소의 값을 가져온다.
+            const a = document.getElementById('int1').value;
+            // 2. id가 int2인 요소의 값을 가져온다.
+            const b = document.getElementById('int2').value;
+            console.log(a, b);
+            // 3. 두개의 숫자 정보를 비교한다.
+            if(a == b){
+                console.log(a + '와 ' + b + '가 같습니다.');
+            } else if(a < b){
+                console.log(b + '는 ' + a + '보다 ' + (b - a) + '만큼 더 큽니다.');
+            } else if(a > b){
+                console.log(a + '는 ' + b + '보다 ' + (a - b) + '만큼 더 큽니다.');
+            }
+            // (1) 두 수가 같다면 -> a와 b가 같습니다.
+            // (2) 두 수가 다르다면
+            //  2-1. 더 큰수와 작은수를 표현
+            //  2-2. a는 b보다 ()만큼 더 큽니다.
+            // 4. 비교 결과를 콘솔 패널에 출력한다.
+            
+
+        }
+    </script>
+
+    <h1>삼항 연산자</h1>
+    <script>
+        let x1 = 3;
+        let x2 = 7;
+        const result1 = x1 > x2 ? ++x1 : ++x2 ;
+        console.log(result1);
+        const result2 = x1 == x2 ? 0 : (x1 > x2 ? ++x1 : ++x2) ;
+        // const result2 = x1 == x2 ? 0 : (result1) ;
+    </script>
+
+    <!-- 연습하기 -->
+    <h1>동동카페</h1>
+    <label for="pay">돈 내기</label>
+    <input id="pay" type="number">
+    <br>
+    <img onclick="paysystem();" src="../resources/human (1).png" style="width: 100px;" alt="돈을 보며 음흉하게 웃고 있습니다.">
+    <div id="coffeeDiv" style="background-color: rgb(226, 255, 183);">어서오세요</div>
+    <script>
+        function paysystem(){
+            let payment1 = document.getElementById('pay').value;
+            // let coffeResult1 = document.getElementById('coffeeDiv').innerHTML;
+            let changesCof = payment1 - 2500;
+            let ansans = payment1 > 2500 ? '잔돈은 ' + (payment1 - 2500) +'원입니다.' : '아메리카노는 2500원 입니다.';
+            // let ansans = payment1 > 2500 ? '잔돈은 ' + changesCof +'원입니다.' : '아메리카노는 2500원 입니다.';
+            // let ansans = payment1 > 2500 ? `잔돈은 ${changesCof}원입니다.` : '아메리카노는 2500원 입니다.';
+            let ans = payment1 == 2500 ? '커피 나왔습니다.' : ansans;
+            document.getElementById('coffeeDiv').innerHTML = ans;
+            // console
+
+        }
+    </script>
+
+
 </body>
 </html>
