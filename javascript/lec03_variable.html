@@ -40,11 +40,11 @@
             console.log(x);
         }
         // console.log(x); -- let은 블록 스코프여서 밖에서는 선언되지 않은 상태 - 오류 뜬다!
-        // console.log(y); -- let은 호이스팅이 불가능한 변수 키워드 - 오류 뜬다!
+        // console.log(y); -- let은 호이스팅이 불가능한 변수 키워드 - 오류 뜬다! -- 정확히는 호이스팅은 되는데 TDZ 때문에 값이 할당되지 않은 곳에 가면 에러가 뜨는 것
         let y = 30;
         console.log(y);
 
-        // console.log(pi); -- cont는 호이스팅이 불가능한 변수 키워드 - 오류 뜬다!
+        // console.log(pi); -- cont는 호이스팅이 불가능한 변수 키워드 - 오류 뜬다! -- 정확히는 호이스팅은 되는데 TDZ 때문에 값이 할당되지 않은 곳에 가면 에러가 뜨는 것
         const pi = 3.14;
         console.log(pi);
         // pi = 3.141592653578; -- cont는 재할당 불가능한 변수 키워드 - 오류 뜬다!
