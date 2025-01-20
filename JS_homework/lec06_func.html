@@ -53,9 +53,30 @@
 
     <h1>키오스크</h1>
     <p>창립 기념일 행사로 전상품 5%할인 됩니다.</p>
-    <input id="basicDC" type="radio">
+    <label for="beforeDC">할인 전 : </label>
+    <input id="beforeDC" type="text" value="9400" readonly>
+    <br>
+
+    <input name="sell" id="basicDC" type="radio" onclick="calcPrice(5)">
     <label for="basicDC">기본할인(5%)</label>
-    <input id="basicDC" type="radio">
-    <label for="basicDC"></label>
+    <br>
+    <input name="sell" id="tellDC" type="radio" onclick="calcPrice(10)">
+    <label for="tellDC">통신사(10%)</label>
+    <br>
+
+    <label for="finalPrice">결제액 : </label>
+    <input type="number" name="" id="finalPrice" readonly>
+
+    <script>
+        function calcPrice(percent = 5){
+        // 1. 할인전 가격 가져오기
+            let bfDC = document.getElementById('beforeDC').value;
+            // console.log(bfDC);
+        // 2. 매개변수 percent를 기준으로 결제액 계산하기
+            let finalPrice = bfDC * (100 - percent)/100;
+        // 3. 마지막 input의 값을 결제액으로 바꾸기
+            document.getElementById('finalPrice').value = finalPrice;
+        }
+    </script>
 </body>
 </html>
