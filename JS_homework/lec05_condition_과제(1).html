@@ -70,23 +70,29 @@
         <option name="deepBlueSea" value="2">뚱이</option>
         <option name="deepBlueSea" value="3">징징이</option>
     </select>
-    <div id="magicMirror">
+    <div id="magicMirror" style="border: 2px solid pink; border-radius: 100%; width: 100px; height: 100px; z-index: 2; background-image: url(../resources/human\ \(1\).png); background-size: cover;">
+        <!-- <div id="magicMirror" style="border: 2px solid pink; border-radius: 100%; width: 100px; height: 100px; z-index: 2; background-image: url(../resources/popcorn.png);"> -->
         <!-- <img style="width: 150px;" src="../resources/dung.png" alt="">
         <img style="width: 150px;" src="../resources/sponge.png" alt="">
         <img style="width: 150px;" src="../resources/human (1).png" alt=""> -->
+        
     </div>
     <script>
         function selectFriends(){
+            
             document.getElementById('magicMirror').innerHTML = '';
             let num = Number(document.getElementById('pineAppleHouse').value);
             let result = '';
+            // document.getElementById('magicMirror').style.backgroundImage = 'url(../resources/sponge.png)'
             switch(num){
-                case 1 : result = '<img style="width: 150px;" src="../resources/sponge.png" alt="">'; break;
-                case 2 : result = '<img style="width: 150px;" src="../resources/dung.png" alt="">'; break;
-                case 3 : result = '<img style="width: 150px;" src="../resources/human (1).png" alt="">'; break;
+                case 1 : result = 'url(../resources/sponge.png)'; break;
+                case 2 : result = 'url(../resources/dung.png)'; break;
+                case 3 : result = 'url(../resources/human (1).png)'; break;
                 default : result = '';
             }
-            document.getElementById('magicMirror').innerHTML += result;
+            // document.getElementById('magicMirror').innerHTML += result;
+            document.getElementById('magicMirror').style.backgroundImage = result;
+            console.log(result);
             // console.log(typeof(result));
         }
     </script>
