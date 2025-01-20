@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>condition_과제(1)</title>
+</head>
+<body>
+    <h1>날씨 확인</h1>
+    <label for="">계절</label>
+    <input name="season" type="radio" id="spring" >
+    <!-- onchange="checkA();" -->
+    <label for="spring">봄</label>
+    <input name="season" type="radio" id="summer">
+    <label for="summer">여름</label>
+    <input name="season" type="radio" id="autumn">
+    <label for="autumn">가을</label>
+    <input name="season" type="radio" id="winter">
+    <label for="winter">겨울</label>
+    <br>
+    <label for="temp">기온</label>
+    <input type="number" id="temp">
+    <br>
+    <button type="button" onclick="checkA();">확인</button>
+    <script>
+        function checkA(){
+            
+            let arr = document.getElementsByName('season');
+            let tempA = document.getElementById('temp').value;
+            let resultName = '';
+            // let resultTemp = '';
+            let resultWarn = '';
+            for(let i = 0; i < arr.length; i++){
+                if(arr[i].checked){
+                    resultName = arr[i].id;
+                    // resultTemp = tempA;
+                    if(arr[i].id == 'summer'){
+                        if(tempA >= 35){
+                            resultWarn = ', 경고:폭염 경보'
+                        } else if(tempA >= 33){
+                            resultWarn = ', 경고:폭염 주의보'
+                        }
+                    }
+                    if(arr[i].id == 'winter'){
+                        if(tempA <= -15){
+                            resultWarn = ', 경고:한파 경보'
+                        } else if(tempA <= -12){
+                            resultWarn = ', 경고:한파 주의보'
+                        }
+                    }
+
+                }
+            }
+            alert('계절:'+resultName+', 온도:'+tempA+'도'+resultWarn)
+            console.log(arr[0].id);
+            console.log(arr[0].checked);
+            // if(arr[0].checked){
+            //     console.log('1');
+            // } else{
+            //     console.log('2');
+            // }
+        }
+    </script>
+
+
+    <h1>스폰지밥, 뚱이, 징징이</h1>
+    <select id="pineAppleHouse" onchange="selectFriends();">
+        <option name="deepBlueSea" value="0">선택하세요</option>
+        <option name="deepBlueSea" value="1">스폰지밥</option>
+        <option name="deepBlueSea" value="2">뚱이</option>
+        <option name="deepBlueSea" value="3">징징이</option>
+    </select>
+    <div id="magicMirror">
+        <!-- <img style="width: 150px;" src="../resources/dung.png" alt="">
+        <img style="width: 150px;" src="../resources/sponge.png" alt="">
+        <img style="width: 150px;" src="../resources/human (1).png" alt=""> -->
+    </div>
+    <script>
+        function selectFriends(){
+            let num = document.getElementById('pineAppleHouse').value;
+            switch(num){
+                case 1 : result = ''; break;
+                case 2 : result = ''; break;
+                case 3 : result = ''; break;
+                default : result = '';
+            }
+            document.getElementById('magicMirror').innerHTML = ;
+        }
+    </script>
+</body>
+</html>
