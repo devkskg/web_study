@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>함수</title>
+</head>
+<body>
+    <h1 id="red" onclick="changeRed();">붉은색</h1>
+    <h1 id="orange" onclick="changeColor('orange');">주황색</h1>
+    <h1 id="gold" onclick="changeEle(this.id);">노란색</h1>
+
+    <script>
+        function changeRed(){
+            document.getElementById('red').style.color = 'red';
+        }
+        function changeColor(colorCode){
+            document.getElementById(colorCode).style.color = colorCode;
+        }
+        function changeEle(ele){
+            document.getElementById(ele).style.color = ele;
+        }
+    </script>
+
+    <h1>매개변수</h1>
+    <input type="button" value="기본" 
+    onclick="printFruit('수박',35000);">
+    <br>
+    <input type="button" value="순서 뒤집기" 
+    onclick="printFruit(15000, '딸기');">
+    <br>
+    <input type="button" value="작은"
+    onclick="printFruit(123);">
+    <!-- 그냥 오는 순서대로 다 받아버리네~
+        알아서 자료형 맞추려고 시도 안함.-->
+    <br>
+    <input type="button" value="많은"
+    onclick="printFruit('수박',35000, '참외', 1234);">
+    <script>
+        function printFruit(name='멜론', price='10'){ 
+            // 매개변수의 default 값 설정 가능!
+            // 나는 price를 인자로 넣어서 name은 디폴트인 멜론으로 나오게 하고 싶어! << 이거 못한다 JS는 그냥 순서대로 받음
+            console.log(`과일 이름 : ${name}`);
+            console.log(`과일 가격 : ${price}`);
+            // if(typeof(name) == 'string' && typeof(price) == 'number'){
+            //     console.log(`과일 이름 : ${name}`);
+            //     console.log(`과일 가격 : ${price}`);
+            // } else{
+            //     console.log('매개변수의 순서, 개수, 자료형을 지키세요.');
+            // }
+        }
+    </script>
+
+    <h1>키오스크</h1>
+    <p>창립 기념일 행사로 전상품 5%할인 됩니다.</p>
+    <input id="basicDC" type="radio">
+    <label for="basicDC">기본할인(5%)</label>
+    <input id="basicDC" type="radio">
+    <label for="basicDC"></label>
+</body>
+</html>

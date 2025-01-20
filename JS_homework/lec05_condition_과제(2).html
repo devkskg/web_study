@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lec05_condition_과제(2).html</title>
+</head>
+<body>
+    <h1>콤보세트</h1>
+    <label for="cntCombo">개수 : </label>
+    <input id="cntCombo" type="number">
+    <button type="button" onclick="orderCombo();">주문</button>
+    <!-- <img src="../resources/coke.png" alt="영화용 콜라 한 컵">
+    <img src="../resources/popcorn.png" alt="영화용 팝콘 한 버켓"> -->
+    <div id="divCombo"></div>
+    <script>
+        function orderCombo(){
+            document.getElementById('divCombo').innerHTML = '';
+            let num = Number(document.getElementById('cntCombo').value);
+            for(let i = 0; i < num; i++){
+                document.getElementById('divCombo').innerHTML += '<img src="../resources/popcorn.png" alt="영화용 팝콘 한 버켓">';
+                for(let j = 0; j < 2; j++){
+                    document.getElementById('divCombo').innerHTML += '<img src="../resources/coke.png" alt="영화용 콜라 한 컵">';
+                }
+                document.getElementById('divCombo').innerHTML += '<br>';
+            }
+        }
+    </script>
+
+    <h1>테이블 만들기</h1>
+    <table border="1">
+        <tr>
+            <td>sdf</td>
+        </tr>
+    </table>
+
+    <button type="button" onclick="makeTable();">테이블 생성</button>
+    <div id="divTable"></div>
+    <script>
+        function makeTable(){
+            let rowsTable = Number(prompt('테이블 행의 갯수는?'));
+            let colsTable = Number(prompt('테이블 열의 갯수는?'));
+            let innerCode = '';
+            let cntcnt = 1;
+            document.getElementById('divTable').innerHTML = '';
+            innerCode = '<table border="1"> ';
+                for(let i = 0; i < rowsTable; i++){
+                    innerCode += '<tr>';
+                    for(let j = 0; j < colsTable; j++){
+                        innerCode += '<td>'+ cntcnt++ +'</td>';
+                        // cntcnt++;
+                    }
+                    innerCode += '</tr>';
+                }
+                    innerCode += '</table>';
+                    document.getElementById('divTable').innerHTML += innerCode;
+                    console.log(document.getElementById('divTable').innerHTML);
+
+            // document.getElementById('divTable').innerHTML = '';
+            // document.getElementById('divTable').innerHTML = '<table border="1"> ';
+            //     for(let i = 0; i < rowsTable; i++){
+            //         document.getElementById('divTable').innerHTML += '<tr>';
+            //             console.log(document.getElementById('divTable').innerHTML);
+            //     for(let j = 0; j < colsTable; j++){
+            //         document.getElementById('divTable').innerHTML += '<td>'+123+'</td>';
+            //     }
+            //     document.getElementById('divTable').innerHTML += '</tr>';
+            // }
+            // document.getElementById('divTable').innerHTML += '</table>';
+
+            // console.log(colsTable);
+            // console.log(typeof(colsTable));
+            // console.log(rowsTable);
+            // console.log(typeof(rowsTable));
+        }
+    </script>
+</body>
+</html>

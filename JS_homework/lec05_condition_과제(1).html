@@ -77,14 +77,17 @@
     </div>
     <script>
         function selectFriends(){
-            let num = document.getElementById('pineAppleHouse').value;
+            document.getElementById('magicMirror').innerHTML = '';
+            let num = Number(document.getElementById('pineAppleHouse').value);
+            let result = '';
             switch(num){
-                case 1 : result = ''; break;
-                case 2 : result = ''; break;
-                case 3 : result = ''; break;
+                case 1 : result = '<img style="width: 150px;" src="../resources/sponge.png" alt="">'; break;
+                case 2 : result = '<img style="width: 150px;" src="../resources/dung.png" alt="">'; break;
+                case 3 : result = '<img style="width: 150px;" src="../resources/human (1).png" alt="">'; break;
                 default : result = '';
             }
-            document.getElementById('magicMirror').innerHTML = ;
+            document.getElementById('magicMirror').innerHTML += result;
+            // console.log(typeof(result));
         }
     </script>
 </body>
