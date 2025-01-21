@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>배열</title>
+</head>
+<body>
+    <h1>선언</h1>
+    <button onclick="createArray();" type="button">결과 확인</button>
+    <script>
+        const createArray = function(){
+            // 리터럴
+            let arr1 = [];
+            let arr2 = ['해','달',"별"];
+            // let arr3 = new Array();
+
+            console.log(arr1);
+            console.log(arr2);
+            console.log(typeof(arr2));
+            // 배열만의 확인하는 함수가 있다. true/false
+            console.log(Array.isArray(arr2));
+
+            // 생성자
+            let arr3 = new Array();
+            let arr4 = new Array(5);
+            let arr5 = new Array('해', '달', '별');
+            console.log(arr3);
+            console.log(arr4);
+            console.log(arr5);
+        }
+    </script>
+
+    <h1>값 대입</h1>
+    <button type="button" onclick="setVal();">대입 연습</button>
+    <button type="button" onclick="getVal();">호출</button>
+    <script>
+        let globalArray = new Array();
+        let setVal = function(){
+            globalArray[0] = 100;
+            globalArray[1] = '해와달';
+            globalArray[2] = true;
+            globalArray[3] = function(){
+                                alert('배열 안!');
+                            };
+
+            globalArray[5] = 'test';
+            // for(let i = 0; i < 5; i++){
+            //     globalArray[i] = 2 * i;
+            // }
+        }
+        let getVal = function(){
+            // console.log(globalArray);
+            // console.log(globalArray[3]);
+            globalArray[3]();
+            // console.log(globalArray[4]);
+            // for(let i = 0; i < globalArray.length; i++){
+            //     console.log(globalArray[i]);
+            // }
+        }
+    </script>
+
+    <h1>split</h1>
+    <span>tom, jason, maria, Java</span>
+    <button onclick="changeStrToArr();" type="button">2번째 데이터 가져오기</button>
+    <script>
+        const changeStrToArr = function(){
+            let str1 = document.getElementsByTagName('span')[0].innerText;
+            let arr = str1.split(', ');
+            // console.log(arr[1]);
+            if(arr.includes('jason')){
+                console.log(arr[arr.indexOf('jason')]);
+            }
+
+            // includes 와 indexOf 둘 다 포함하는지 아닌지 판단자로 쓸 수 있다.
+            if(arr.includes('Java')){
+                console.log('Hello World');
+            } else{
+                console.log('자바 아니야..');
+            }
+            if(arr.indexOf('Java') != -1){
+                console.log('Hello World');
+            } else{
+                console.log('자바 아니야..');
+            }
+        }
+    </script>
+
+    <!-- 연습 문제 -->
+    <h1>사과 찾기</h1>
+    <label id="la1">사과,바나나,당근</label>
+    <button onclick="findApple();" type="button">사과의 인덱스 찾기</button>
+    <script>
+        const findApple = function(){
+            // 1. id가 la1인 친구의 내부 글자 가져오기
+            let str = document.getElementById('la1').innerText;
+            // 2. 문자 잘라서 배열 만들기
+            let arr = str.split(',');
+            // 3. 사과의 인덱스 찾기
+            let idx = arr.indexOf('사과')
+            alert('사과의 인덱스 : ' + idx);
+        }
+    </script>
+
+
+
+</body>
+</html>

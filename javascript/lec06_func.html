@@ -78,5 +78,135 @@
             document.getElementById('finalPrice').value = finalPrice;
         }
     </script>
+
+
+
+    <h1>가변인자 함수</h1>
+    <input onclick="sumNum(1,2,3,4);" type="button" value="실행확인" name="" id="">
+    <script>
+        function sumNum(){// 매개변수 쪽을 비워놔도 arguments 가 받아서 해결해준다?
+            // console.log(arguments[0]);
+            let result = 0;
+            for(let i = 0; i < arguments.length; i++){
+                result += arguments[i];
+            }
+            console.log(result);
+        }
+    </script>
+
+    <h1>반환값</h1>
+    <button onclick="alert(calcDay());" type="button">오늘 날짜</button>
+    <script>
+        function calcDay(){
+            const date = new Date();
+            const year = date.getFullYear();
+            return `오늘은 ${year}년 입니다.`;
+        }
+    </script>
+
+    <h1>함수 선언(1)</h1>
+    <button onclick="basicFunc(1);" type="button">테스트</button>
+    <script>
+        function basicFunc(){
+            alert('선언(1)')
+        }
+        function basicFunc(){
+            alert('선언(2)')
+        }
+    </script>
+
+    <!-- 보통 함수 선언할때 const 많이 쓴다!!!! let 쓰면 재할당? 오버라이드 느낌인가.. 가능한듯 -->
+    <h1>익명함수</h1>
+    <input onclick="annoyFunc();" type="button" name="" id="" value="익명 테스트">
+    <script>
+        let annoyFunc = function(){
+            alert('익명함수~');
+        }
+        // 이름 겹치게 못쓴다
+        // let annoyFunc = function(){
+            
+        // }
+    </script>
+    <!-- 다른 스크립트에서도 이름 겹치게 못쓴다 -->
+    <!-- <script>
+        let annoyFunc = function(){}
+    </script> -->
+
+    <h1>화살표 함수</h1>
+    <!-- 앞으로 화살표 함수 쓰자 -->
+    <button onclick="alert(arrow1());" type="button">화살표 함수1</button>
+    <button onclick="alert(arrow2(1, 2));" type="button">화살표 함수2</button>
+    <button onclick="alert(arrow3('abcd', 'b'));" type="button">화살표 함수3</button>
+    <button onclick="alert(arrow4('abcd'));" type="button">화살표 함수4</button>
+    <script>
+        // 1. 매개변수 X
+        const arrow1 = () => {
+            alert('화살표 함수 1번 : 매개변수X');
+            return 1+2; // 그냥 써본 것
+        }
+        // 2. 매개변수 O
+        const arrow2 = (num1, num2) =>{
+            console.log('2번');
+            return num1+num2;
+            // return num1, num2; 이렇게 쓰면 num2만 리턴 하는 듯?
+        }
+        // 3. 반환값이 간단할때(1줄)
+        const arrow3 = (str, s) => str.indexOf(s);
+        // 4. 매개변수가 하나일때
+        const arrow4 = str => str.length;
+        // 5. 혼자 테스트 / 매개변수가 없을 때
+        // const arrowTest => {
+        //     return 123;
+        // }
+        // 이거 안되네
+    </script>
+
+    <!-- 연습 문제 -->
+    <h1>call 익명, 화살표 함수 문제</h1>
+    <button type="button" onclick="console.log(cal1(11,41));">선언적 함수</button>
+    <button type="button" onclick="console.log(cal2(11,41));">익명 함수</button>
+    <button type="button" onclick="console.log(cal3(11,41));">화살표 함수</button>
+    <script>
+        function cal1(a,b){
+            return a*b;
+        }
+        let cal2 = function(a,b){
+            return a*b;
+        }
+        let cal3 = (a,b) =>{
+            return a*b;
+        }
+    </script>
+
+    <h1>익명 함수 활용</h1>
+    <button onclick="timerFunc();" type="button">1초 뒤에 동작</button>
+    <script>
+        let timerFunc = function(){
+            // setTimeout(기능, 시간); // 기능을 익명함수로 써준다.
+            setTimeout(function(){
+                console.log('3초 지났어요~');
+            },3000)
+        }
+    </script>
+    <!-- 함수 안의 함수가 있다는 뜻으로 괄호()() 두개 쓴다. -->
+    <button onclick="returnFunc('바깥쪽')('테스트');" type="button">반환값 테스트</button>
+    <script>
+        // JS에서 함수는 객체이기 때문에 함수 안에 함수가 가능하다.
+        const returnFunc = function(str){
+            const innerFunc = msg => {
+                console.log(str + " : " + msg);
+            }
+            return innerFunc;
+        }
+    </script>
+
+    <div id="instant_div">
+        즉시 실행 함수 테스트
+    </div>
+    <script>
+        (function(){
+            document.getElementById('instant_div').innerHTML = '<h1>확인</h1>';
+        })();
+    </script>
 </body>
 </html>
