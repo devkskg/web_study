@@ -75,19 +75,32 @@
         }
     </script>
 
-    <h1>귤농장</h1>
-    
-    
-    <div style="display: inline;">
-        123
-        <br>
-        123
-    </div>
-    <div style="display: inline;">
-        123
-        <br>
-        123
-    </div>
+<!-- 요거는 강사님 풀이 figure, figcaption 기억해!! -->
+<h1>귤농장</h1>
+<button onclick="getGul();">체험시작</button>
+<div id="basket_div"></div>
+<style>
+    figure{display: inline-block;}
+</style>
+<script>
+    function getGul(){
+        let basket = 0;
+        let ele = document.getElementById('basket_div');
+        while(true){
+            basket += 10;
+            // 귤 출력
+            // ele.innerHTML += `<figure>
+            //     <figcaption>귤 ${basket}g</figcaption>
+            //     <img src="../resources/gul.png">
+            // </figure>`;
+            ele.innerHTML += '<figure><figcaption>귤 '+basket+'g</figcaption><img src="../resources/gul.png"></figure>';
+            if(basket == 200){
+                ele.innerHTML+='<h1>체험종료</h1>';
+                break;
+            }
+        }
+    }
+</script>
 
 
 
