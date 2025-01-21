@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>배열 과제</title>
+</head>
+<body>
+    <h1>성적 평균 계산기</h1>
+    <div>
+        <span>평균 : </span>
+        <span id="avgOfClass">평균 나오는 곳</span>
+    </div>
+    <label for="scoreClass">성적</label>
+    <input id="scoreClass" type="number">
+    <button onclick="addPoint();" type="button">추가</button>
+    <button onclick="clearPoint();">이게 되나?</button>
+    <script>
+        let arrClass = new Array();
+        const addPoint = function(){
+            let pt = document.getElementById('scoreClass').value;
+            arrClass.push(pt);
+
+            let sum = 0;
+            let average = 0;
+            for(let i = 0; i < arrClass.length; i++){
+                sum += Number(arrClass[i]);
+            }
+            average = sum / arrClass.length;
+            document.getElementById('avgOfClass').innerHTML = average;
+        }
+        const clearPoint = function(){
+            arrClass = new Array();
+            document.getElementById('avgOfClass').innerHTML = '';
+        }
+    </script>
+
+    <h1>water melon</h1>
+    <fieldset>
+        <legend>보기</legend>
+        <span id="sp1">n o l e m</span>
+        <br>
+        <span id="sp2">r e t a w</span>
+    </fieldset>
+    <br>
+    <div id="waterMelonDiv" style="border: 1px solid crimson;">야호</div>
+    <br>
+    <button onclick="reverseOrder();">처리</button>
+
+    <script>
+        const reverseOrder = function(){
+            let str1 = document.getElementById('sp1').innerText;
+            let str2 = document.getElementById('sp2').innerText;
+            let arr1 = str1.split(' ');
+            let arr2 = str2.split(' ');
+            let result1 = arr1.concat(arr2);
+            result1.reverse();
+            let result2 = result1.join('');
+            document.getElementById('waterMelonDiv').innerText = result2;
+        }
+    </script>
+
+    <h1>개구리, 바나나, 복숭아</h1>
+    <fieldset>
+        <legend>입력</legend>
+        <form action="">
+            <input id="frog" type="text">
+            <button type="reset" onclick="addFrog();">입력</button>
+        </form>
+    </fieldset>
+    <div id="printPlaceDiv"></div>
+    <button onclick="printFrog();">출력</button>
+    <script>
+        let arrFrog = new Array();
+
+        let addFrog = function(){
+            let str = document.getElementById('frog').value;
+            arrFrog.push(str);
+
+        }
+        let printFrog = function(){
+            document.getElementById('printPlaceDiv').innerHTML = '';
+            let convArrFrog = arrFrog.join(', ');
+            document.getElementById('printPlaceDiv').innerHTML += convArrFrog;
+        }
+    </script>
+
+    <h1>당근 시렁</h1>
+    <p>
+        다음 보기의 문자열을 바탕으로 <br> 삭제할 음식과 추가할 음식을 입력받아서 <br> 지우고, 추가하는 코드를 작성하여라(단, 1개씩 입력)
+    </p>
+    <p>
+        예시) 삭제 : 당근 / 추가 : 타코야키 <br>
+        결과 -> 피자 치킨 햄버거 떡볶이 타코야끼
+    </p>
+
+    <fieldset>
+        <legend>보기</legend>
+        <span id="wannaFood">피자 치킨 당근 햄버거 떡볶이</span>
+    </fieldset>
+    <p>
+        <input id="delFood" style="width: 200px;" type="text" placeholder="삭제할 음식이름을 입력하세요">
+        <input id="addFood" style="width: 200px;" type="text" placeholder="추가할 음식이름을 입력하세요">
+    </p>
+    
+    <!-- <div>이 부분에 정답이 출력 될거야~</div> -->
+    <p id="printCarrotDiv" style="border: 1px solid crimson;">이 부분에 정답이 출력 될거야~</p>
+    <button onclick="proceedNPrint();">처리 및 출력</button>
+
+    <script>
+        let strNoCarrot = document.getElementById('wannaFood').innerText;
+        let arrNoCarrot = strNoCarrot.split(' ');
+        let newArrNoCarrot = new Array();
+        const proceedNPrint = function(){
+            document.getElementById('printCarrotDiv').innerHTML = '';
+            let del = document.getElementById('delFood').value;
+            let add = document.getElementById('addFood').value;
+            if(arrNoCarrot.includes(del)){
+
+                for(let i = 0; i < arrNoCarrot.length; i++){
+                    if(i == arrNoCarrot.indexOf(del)){
+                        continue;
+                    } else{
+                        newArrNoCarrot.push(arrNoCarrot[i]);
+                    }
+                }
+                console.log('참');
+                // console.log(arrNoCarrot);
+            } else{
+                newArrNoCarrot = arrNoCarrot;
+                console.log('거짓');
+            }
+            newArrNoCarrot.push(add);
+            let result = newArrNoCarrot.join(' ');
+            document.getElementById('printCarrotDiv').innerHTML += result;
+        }
+    </script>
+</body>
+</html>

@@ -208,5 +208,79 @@
             document.getElementById('instant_div').innerHTML = '<h1>확인</h1>';
         })();
     </script>
+
+    <h1>배열 -> 문자열</h1>
+    <button onclick="arrToStr();" type="button">연습</button>
+    <script>
+        let arrToStr = function(){
+            let food = ['떡볶이', '튀김', '순대'];
+            let result = food.join('+');
+            console.log(result);
+        }
+    </script>
+
+    <h1>배열 뒤집기</h1>
+    <button onclick="otherWay();">반대로</button>
+    <script>
+        let otherWay = function(){
+            let alpha = ['a','b','e','c'];
+            alpha.reverse();
+            console.log(alpha);
+        }
+    </script>
+
+    <h1 onclick="dataChange();">push, pop</h1>
+    <script>
+        let dataChange = function(){
+            let names = ['철수', '영희'];
+            names.push('길동');
+            console.log(names);
+            names.pop();
+            console.log(names);
+            names.unshift('지은');
+            console.log(names);
+            names.shift();
+            console.log(names);
+        }
+    </script>
+
+    <!-- 연습문제 -->
+    <h1>기록하기</h1>
+    <form action="">
+    <input id="writeRecord" type="text">
+    <button type="reset" onclick="addMemo()">입력</button>
+    <button type="reset" onclick="showMemo()">출력</button>
+    </form>
+    <div id="printDiv"></div>
+
+
+    <script>
+        let memoArr = new Array();
+
+        let addMemo = function(){
+            // input에 입력한 문자 정보 받아오기
+            let str = document.getElementById('writeRecord').value;
+            // memoArr 배열에 요소로 추가하기
+            memoArr.push(str);
+            console.log(memoArr);
+        }
+        let showMemo = function(){
+            // memoArr 배열에 기록된 모든 정보를 순서가 없는 목록 형태로 출력
+            let printStr = '';
+            for(let i = 0; i < memoArr.length; i++){
+                printStr += '<li>' + memoArr[i] + '</li>';
+            }
+            let printResult = '<ul>' +printStr+'</ul>'
+            document.getElementById('printDiv').innerHTML += printResult;
+            console.log(printStr);
+
+
+
+
+
+        }
+    </script>
+
+    
 </body>
 </html>

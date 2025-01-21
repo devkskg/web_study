@@ -22,17 +22,18 @@ border-radius: 40px; -->
     border-radius: 40px;">
 </div>
 <br>
-<input id="rangeR" type="range" onchange="radiusAdd(this.value)">
-<span id="rangeSpan"></span>
+<input id="rangeR" type="range" onchange="radiusAdd(this.value)" min="0" max="75" step="5">
+<span id="rangeSpan">0</span>
 
 <script>
     // let val = Number(document.getElementById('rangeR').value);
+    document.getElementById('rangeSpan').innerText = document.getElementById('roundBorderImg').style.borderRadius;
     let radiusAdd = v =>{
-        document.getElementById('roundBorderImg').style.borderRadius = v + '%';
+        document.getElementById('roundBorderImg').style.borderRadius = v + 'px';
         // return v;
         // console.log(v);
         // console.log(document.getElementById('roundBorderImg').style.borderRadius);
-        document.getElementById('rangeSpan').innerText = v;
+        document.getElementById('rangeSpan').innerText = v + 'px';
     }
 </script>
 
@@ -43,33 +44,30 @@ border-radius: 40px; -->
     <input onclick="find(2);" name="selectSearch" id="selectSearchDate" type="radio"><label for="selectSearchDate">날짜</label>
     <input onclick="find(3);" name="selectSearch" id="selectSearchAuthor" type="radio"><label for="selectSearchAuthor">작성자</label>
     <hr>
-    <div></div>
+    <div id="selectDiv"></div>
 </fieldset>
 <script>
     const find = function(a){
+        let str1 = '<div style="background-color: yellow; padding: 5px;">검색할 제목을 입력하세요 : <br><input id="title" type="text"><button type="button">검색</button>';
+        let str2 = '</div><div style="background-color: yellow; padding: 5px;">검색할 날짜을 입력하세요 : <br><input id="date1" type="date"><span>~</span><input id="date2" type="date"><button type="button">검색</button></div>';
+        let str3 = '<div style="background-color: yellow; padding: 5px;">검색할 작성자를 입력하세요 : <br><input id="author" type="text"><button type="button">검색</button></div>';
+        document.getElementById('selectDiv').innerHTML = '';
         if(a == 1){
-            
+            document.getElementById('selectDiv').innerHTML = str1;
+        } else if(a == 2){
+            document.getElementById('selectDiv').innerHTML = str2;
+        } else if(a == 3){
+            document.getElementById('selectDiv').innerHTML = str3;
         }
     }
 </script>
-<div style="background-color: yellow; padding: 5px;">
-    검색할 제목을 입력하세요 : <br>
-    <input id="title" type="text">
-    <button type="button">검색</button>
-</div>
-<div style="background-color: yellow; padding: 5px;">
-    검색할 날짜을 입력하세요 : <br>
-    <input id="date1" type="date">
-    <span>~</span>
-    <input id="date2" type="date">
-    <button type="button">검색</button>
-</div>
-<div style="background-color: yellow; padding: 5px;">
-    검색할 작성자를 입력하세요 : <br>
-    <input id="author" type="text">
-    <button type="button">검색</button>
-</div>
+<!-- <div style="background-color: yellow; padding: 5px;">검색할 제목을 입력하세요 : <br><input id="title" type="text"><button type="button">검색</button>
 
+</div><div style="background-color: yellow; padding: 5px;">검색할 날짜을 입력하세요 : <br><input id="date1" type="date"><span>~</span><input id="date2" type="date"><button type="button">검색</button></div>
+
+<div style="background-color: yellow; padding: 5px;">검색할 작성자를 입력하세요 : <br><input id="author" type="text"><button type="button">검색</button></div> -->
+
+<h1>BMI 지수</h1>
 
 
 </body>
