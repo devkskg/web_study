@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>객체 과제</title>
+</head>
+<body>
+    <h1>출석부</h1>
+    <fieldset>
+        <legend>강아지 정보</legend>
+        <label for="petName">이름 : </label>
+        <input id="petName" type="text">
+        <br>
+        <label for="petAge">나이 : </label>
+        <input id="petAge" type="text">
+        <br>
+        <label for="petSpecial">특징 : </label>
+        <input id="petSpecial" type="text">
+    </fieldset>
+    <p>
+    <button onclick="setFriend();">등록</button>
+    <button onclick="getFriend();">확인</button>
+    </p>
+    <div id="petDiv"></div>
+    <script>
+        let friendArr = {};
+        const setFriend = function(){
+            let name = document.getElementById('petName').value;
+            let age = document.getElementById('petAge').value;
+            let special = document.getElementById('petSpecial').value;
+            friendArr['이름'] = name;
+            friendArr['나이'] = age;
+            friendArr['특징'] = special;
+            console.log(friendArr);
+        }
+        const getFriend = function(){
+            let temp = '';
+            temp = '<table border="1"><tr>';
+            for(let fa in friendArr){
+                temp += '<th>' + fa + '</th>'
+                // temp += '<td>' + fa + '</td>'
+            }
+            
+            temp += '</tr>';
+            temp += '<tr>';
+            temp += '<td>'+ friendArr['이름'] + '</td>';
+            temp += '<td>'+ friendArr['나이'] + '</td>';
+            temp += '<td>'+ friendArr['특징'] + '</td>';
+                // 생각해보니 키값에 해당하는 것을 하려면 row가 밀려 버리는데?
+            // for(let i = 0; i < friendArr.length; i++){
+            // }
+            temp += '</tr></table>';
+            console.log(temp);
+            document.getElementById('petDiv').innerHTML = temp;
+        }
+    </script>
+    
+    <h1>학생 정보</h1>
+    <table id="studentTable" border="1">
+        <caption style="caption-side: bottom; color: crimson; font-weight: bold;">
+            학생정보 테이블
+            <br>
+            <button onclick="addStudent();">입력 및 출력</button>
+        </caption>
+        <tr>
+            <th>이름</th>
+            <th>나이</th>
+            <th>주소</th>
+        </tr>
+        <!-- 
+        <tr>
+            <td id="chulName">1</td>
+            <td id="chulAge">2</td>
+            <td id="chulAddress">3</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr> -->
+    </table>
+    
+
+    <script>
+        let objectArr = [];
+        const addStudent = function(){
+            for(let i = 0; i < 3; i++){
+                let student = {};
+                let name = prompt('이름');
+                let age = prompt('나이');
+                let address = prompt('주소');
+                student['이름'] = name;
+                student['나이'] = age;
+                student['주소'] = address;
+                objectArr[i] = student;
+            }
+            console.log(objectArr);
+            // document.getElementById('chulName').innerText = ;
+
+            // <tr>
+            // <td id="chulName">1</td>
+            // <td id="chulAge">2</td>
+            // <td id="chulAddress">3</td>
+            // </tr>
+            for(let i = 0; i < objectArr.length; i++){
+                let temp = '';
+                temp = '<tr>';
+                temp += '<td>' + objectArr[i]['이름'] + '</td>';
+                temp += '<td>' + objectArr[i]['나이'] + '</td>';
+                temp += '<td>' + objectArr[i]['주소'] + '</td>';
+                temp += '</tr>';
+                
+                document.getElementById('studentTable').innerHTML += temp;
+            }
+        }
+    </script>
+
+
+
+
+
+    <h1>표로 검색하기</h1>
+    <button onclick="searchAll();">전체 데이터 출력</button>
+    <button onclick="searchMZ();">20대 출력</button>
+    <input onkeyup="searchAddress();" id="keyWord" type="text" placeholder="주소를 입력하세요.">
+    <button>주소 검색</button>
+    <br>
+    <br>
+    <style>
+        #searchTable th{background-color: rgb(168, 168, 168);}
+    </style>
+    <div id="searchDiv">
+        <table id="searchTable" border="1"><tr><th>이름</th><th>나이</th><th>성별</th><th>주소</th></tr></table>
+    </div>
+
+    <script>
+        
+        let people = [
+            { name: '박영희', age: 32, gender: '여', address: '서울' },
+            { name: '정우성', age: 47, gender: '남', address: '대전' },
+            { name: '김철수', age: 26, gender: '남', address: '부산' },
+            { name: '배수지', age: 24, gender: '여', address: '울산' },
+            { name: '강동원', age: 39, gender: '남', address: '서울' },
+            { name: '한지민', age: 33, gender: '여', address: '청주' },
+            { name: '송혜교', age: 43, gender: '여', address: '부산' },
+            { name: '김철수', age: 45, gender: '남', address: '광주' },
+            { name: '최지우', age: 36, gender: '여', address: '서울' },
+            { name: '이민호', age: 34, gender: '남', address: '대구' },
+            { name: '정우성', age: 42, gender: '남', address: '수원' },
+            { name: '강동원', age: 40, gender: '남', address: '서울' },
+            { name: '박영희', age: 23, gender: '여', address: '대전' },
+            { name: '배수지', age: 28, gender: '여', address: '대구' },
+            { name: '이민호', age: 30, gender: '남', address: '창원' },
+            { name: '강동원', age: 31, gender: '남', address: '부산' },
+            { name: '정우성', age: 39, gender: '남', address: '광주' },
+            { name: '한지민', age: 28, gender: '여', address: '서울' },
+            { name: '최지우', age: 42, gender: '여', address: '울산' },
+            { name: '송혜교', age: 37, gender: '여', address: '서울' },
+            { name: '배수지', age: 35, gender: '여', address: '수원' },
+            { name: '박영희', age: 27, gender: '여', address: '창원' },
+            { name: '김철수', age: 44, gender: '남', address: '대구' },
+            { name: '정우성', age: 41, gender: '남', address: '부산' },
+            { name: '이민호', age: 23, gender: '남', address: '서울' },
+            { name: '강동원', age: 38, gender: '남', address: '울산' },
+            { name: '송혜교', age: 30, gender: '여', address: '청주' },
+            { name: '한지민', age: 34, gender: '여', address: '서울' },
+            { name: '배수지', age: 27, gender: '여', address: '대전' },
+            { name: '김철수', age: 36, gender: '남', address: '광주' }
+        ];
+        const searchAll = function(){
+            document.getElementById('searchDiv').innerHTML = '<table id="searchTable" border="1"><tr><th>이름</th><th>나이</th><th>성별</th><th>주소</th></tr></table>';
+            for(let i = 0; i < people.length; i++){
+                let temp = '';
+                temp += '<tr>';
+                temp += '<td>' + people[i].name + '</td>';
+                temp += '<td>' + people[i].age + '</td>';
+                temp += '<td>' + people[i].gender + '</td>';
+                temp += '<td>' + people[i].address + '</td>';
+                temp += '</tr>';
+                document.getElementById('searchTable').innerHTML += temp;
+            }
+
+        }
+
+        const searchMZ = function(){
+            document.getElementById('searchDiv').innerHTML = '<table id="searchTable" border="1"><tr><th>이름</th><th>나이</th><th>성별</th><th>주소</th></tr></table>';
+            for(let i = 0; i < people.length; i++){
+                if(20 <= people[i].age && people[i].age <= 29){
+                    let temp = '';
+                    temp += '<tr>';
+                    temp += '<td>' + people[i].name + '</td>';
+                    temp += '<td>' + people[i].age + '</td>';
+                    temp += '<td>' + people[i].gender + '</td>';
+                    temp += '<td>' + people[i].address + '</td>';
+                    temp += '</tr>';
+                    document.getElementById('searchTable').innerHTML += temp;
+                }
+            }
+        }
+
+        const searchAddress = function(){
+            document.getElementById('searchDiv').innerHTML = '<table id="searchTable" border="1"><tr><th>이름</th><th>나이</th><th>성별</th><th>주소</th></tr></table>';
+            let keyWord = document.getElementById('keyWord').value;
+            for(let i = 0; i < people.length; i++){
+                if(people[i].address.includes(keyWord)){
+                    let temp = '';
+                    temp += '<tr>';
+                    temp += '<td>' + people[i].name + '</td>';
+                    temp += '<td>' + people[i].age + '</td>';
+                    temp += '<td>' + people[i].gender + '</td>';
+                    temp += '<td>' + people[i].address + '</td>';
+                    temp += '</tr>';
+                    document.getElementById('searchTable').innerHTML += temp;
+                }
+            }
+        }
+    </script>
+
+
+
+    <h1>고객 정보 확인</h1>
+    <button onclick="createCustomers();">생성</button>
+    <br><br>
+    <div id="costomersDiv">
+        <table id="costomersTable" border="1"><tr><th>이름</th><th>나이</th><th>성별</th></tr></table>
+    </div>
+
+    <script>
+        let costomers = [
+            {
+            이름 : '김철수',
+            나이 : 21,
+            성별 : '남'
+            },
+            {
+            이름 : '이영희',
+            나이 : 36,
+            성별 : '여'
+            },
+            {
+            이름 : 'gildong',
+            나이 : 51,
+            성별 : 'M'
+            }
+        ]
+        const createCustomers = function(){
+            for(i = 0; i < costomers.length; i++){
+                let temp = '';
+                temp += '<tr>';
+                temp += '<td>' + costomers[i]['이름'] + '</td>';
+                temp += '<td>' + costomers[i]['나이'] + '</td>';
+                temp += '<td>' + costomers[i]['성별'] + '</td>';
+                temp += '</tr>';
+                document.getElementById('costomersTable').innerHTML += temp;
+            }
+        }
+    </script>
+</body>
+</html>

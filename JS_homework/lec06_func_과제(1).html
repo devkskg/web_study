@@ -67,6 +67,83 @@ border-radius: 40px; -->
 
 <div style="background-color: yellow; padding: 5px;">검색할 작성자를 입력하세요 : <br><input id="author" type="text"><button type="button">검색</button></div> -->
 
+<!-- 강사님 정답 -->
+<fieldset>
+    <legend>검색할 항목을 선택하세요.</legend>
+    <input type="radio" id="title" onclick="titlePage();">
+    <label for="title">제목</label> 
+    <input type="radio" id="date" onclick="datePage();">
+    <label for="date">날짜</label> 
+    <input type="radio" id="writer" onclick="writerPage();">
+    <label for="writer">작성자</label>
+</fieldset>
+<hr>
+<div class="under_div" id="title_div">
+    <span>검색할 제목을 입력하세요 : </span><br>
+    <input type="text">
+    <input type="button" value="검색">
+</div>
+<div class="under_div" id="date_div">
+    <span>검색할 날짜를 입력하세요 : </span><br>
+    <input type="date">
+    ~
+    <input type="date">
+    <input type="button" value="검색">
+</div>
+<div class="under_div" id="writer_div">
+    <span>작성자를 입력하세요 : </span><br>
+    <input type="text">
+    <input type="button" value="검색">
+</div>  
+<script>
+    const blockingFunc = (elementId) =>{
+        const allDiv = document.querySelectorAll('.under_div');
+        for(let i = 0 ; i < allDiv.length ; i++){
+            if(allDiv[i].id == elementId){
+                allDiv[i].style.display = 'block';
+            } else{
+                allDiv[i].style.display = 'none';
+            }
+        }
+    }
+
+    const uncheckFunc = (elementId) =>{
+        const allRadio = document.querySelectorAll('input[type=radio]');
+        for(let i = 0 ; i < allRadio.length ; i++){
+            if(allRadio[i].id != elementId){
+                allRadio[i].checked = false;
+            }
+        }
+    }
+
+    const processAll = (elementId) =>{
+        blockingFunc(elementId+'_div');
+        uncheckFunc(elementId);
+    }
+
+    const titlePage = function(){
+    // 1단계
+    // document.querySelector('#title_div').style.display = 'block';
+    // document.querySelector('#date_div').style.display = 'none';
+    // document.querySelector('#wrtiter_div').style.display = 'none';
+    // document.querySelector('#date').checked = false;
+    // document.querySelector('#writer').checked = false;
+
+    // 2단계
+    // blockingFunc('title_div');
+    // uncheckFunc('title');
+
+    // 최종
+        processAll('title');
+    }
+    const datePage = function(){
+        processAll('date');
+    }
+    const writerPage = function(){
+        processAll('writer');
+    }
+</script>
+
 <h1>BMI 지수</h1>
 
 
