@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내장객체 과제</title>
+</head>
+<body id="rainbowBody">
+    <h1>랜덤값 출력</h1>
+    <label for="rdStart">시작</label>
+    <input id="rdStart" type="number" min="0">
+    <br>
+    <label for="rdEnd">종료</label>
+    <input id="rdEnd" type="number" min="0">
+    <br>
+    <button onclick="makeRD();">실행</button>
+
+    <script>
+        let rd = [];
+        let makeRD = function(){
+            let sNum = Number(document.getElementById('rdStart').value);
+            let eNum = Number(document.getElementById('rdEnd').value);
+            // console.log(sNum);
+            for(let i = 0; i < 10; i++){
+                rd[i] = Math.floor((Math.random()*(eNum - sNum + 1)))+sNum;
+            }
+            alert(rd);
+        }
+    </script>
+
+
+    <h1>Math 객체 연습</h1>
+    <p id="floor">Floor: 7.8</p>
+    <p id="round">Round: 5.5</p>
+    <p id="ceil">Ceil: 3.2</p>
+    <p id="abs">Abs: -15</p>
+    <p id="pow">Pow: 3^4</p>
+    <button onclick="applyMathFunctions();">Math 함수 적용</button>
+    <script src="../resources/basic.js"></script>
+
+    <h1>로또</h1>
+    <p>
+        1~45 사이의 숫자중에서 랜덤값 6개 뽑기
+        <br>
+        * 숫자값 중복 불가
+        <br>
+        오름차순 정렬
+    </p>
+    <button onclick="lotteryRD();">로또</button>
+    <div id="lotteryDiv"></div>
+    <script>
+        let lotteryRD = function(){
+            document.getElementById('lotteryDiv').innerHTML = '';
+            let arr = [];
+            for(let i = 0; i < 6; i++){
+                let RD = Math.floor(Math.random()*45)+1;
+                arr[i] = RD;
+            }
+            arr.sort(function(l, r){
+                return l - r;
+            });
+            for(let i = 0; i < arr.length; i++){
+                document.getElementById('lotteryDiv').innerHTML += arr[i] + '<br>';
+            }
+        }
+    </script>
+
+    <h1>바꾸기</h1>
+    <button onclick="changeBackColor();">배경색 바꾸기</button>
+    <script>
+        const changeBackColor = function(){
+            
+            let rd1 = Math.floor(Math.random()*256);
+            let rd2 = Math.floor(Math.random()*256);
+            let rd3 = Math.floor(Math.random()*256);
+            document.getElementById('rainbowBody').style.backgroundColor = 'rgb('+rd1+','+rd2+','+rd3+')';
+        }
+    </script>
+</body>
+</html>

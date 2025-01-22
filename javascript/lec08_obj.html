@@ -13,10 +13,11 @@
             // 1. 선언 후 key별로 값 추가
             let person = {}; // person을 객체로 쓸거다!
             person['name'] = '홍길동'; // 문자 형태로 key값 쓰기
-            person['yam'] = function(){console.log('냠냠')} // 이거 어케 쓰는지 알아보도록 - 해결~
+            person['yam'] = function(){console.log('냠냠')} // 이거 어케 쓰는지 알아보도록
             person['age'] = '560';
             console.log(person);
-            console.log(person.yam());
+            // console.log(person.yam());
+            person.yam();
             // 이거 콘솔 창에서 순서 뒤죽박죽 나올 수 있다.
             // 객체는 순서를 보장하지 않는다!!!!!
 
@@ -93,6 +94,248 @@
             }
         }
     </script>
+
+    <h1>객체 속성 추가 및 삭제</h1>
+    <button onclick="addProp();">추가</button>
+    <button onclick="removeProp();">삭제</button>
+    <script>
+        let sampleObj = {};
+        let addProp = () => {
+            sampleObj['f' + 'u' + 'n'] = function(){
+                console.log('확인');
+            }
+            sampleObj.num = 100;
+            console.log(sampleObj);
+            sampleObj.fun();
+        }
+        let removeProp = () => {
+            delete(sampleObj['num']);
+            delete(sampleObj.fun);
+            console.log(sampleObj);
+        }
+    </script>
+
+    <h1>객체 호출</h1>
+    <button onclick="makePerson();">생성</button>
+    <script>
+        let makePerson = function(){
+            let p = setPerson('수철', true, ['수영', '골프'], {name : '만년필', price : 100});
+            // console.log(p);
+            // console.log(p.callName());
+
+            // 1. 리터럴 : number, string, boolean
+            let val1 = p.name;
+            let val2 = p['name'];
+
+            let word = 'Student';
+            let val3 = p['is' + word]; // 이거 좋다
+            console.log(val1,val2,val3);
+
+            // 2. 배열
+            let arr1 = p['hobby'];
+            let arr2 = p.hobby;
+            // 아래 세가지 방법도 가능하다~
+            let val4 = p['hobby'][0];
+            val4 = p.hobby[1];
+            val4 = arr1[0];
+            console.log(arr1[0], arr2[1]);
+            
+            let str = p.hobby.join('+-');
+            console.log(str);
+
+            p['hobby'].forEach(function(ele){
+                console.log(ele + '접근');
+            })
+
+            // 3. 객체
+            let val5 = p.item.name;
+            let val6 = p['item']['price'];
+            console.log(val5 + val6);
+
+            // 4. 함수
+            let val7 = p.callName();
+            console.log(val7);
+
+            // 이거 좀 신기하구만
+            // let val8 = p.sayMyName;
+            // val8();
+            // console.log(val8());
+
+            // p.testFunc();
+            console.log(p.testFunc());
+
+            // 5. for in문
+            for(keyy in p){
+                // console.log(keyy);
+                console.log('123123123123');
+                let valu = p[keyy]; // for in문 쓸때는 무조건 대괄호로 해서 해야한다. keyy로 된 곳이 문자열로 생성?반환? 되기 때문이다.
+                console.log(valu);
+            }
+        }
+
+
+
+
+        let setPerson = function(name, bool, arr, item){
+            let obj = {
+                name : name,
+                isStudent : bool,
+                hobby : arr,
+                item : item,
+                callName : function(){
+                    return '나의 이름은 ' + this.name;
+                },
+                sayMyName : function(){
+                    console.log('다시! 나의 이름은 ' + this.name);
+                },
+                testFunc : function(){
+                    if(this.isStudent){
+                        console.log(`학생 ${this.name}`);
+                    } else{
+                        console.log(`성인 ${this.name}`);
+                    }
+                }
+            };
+            return obj;
+        }
+    </script>
+
+    <button onclick="thisFunc();">This Test</button>
+    <script>
+        const thisFunc = function(){
+            account('철수').printName();
+        }
+        const account = function(name){
+            return {name : name,
+                printName : ()=>{
+                    console.log(this);
+            }};
+        }
+    </script>
+
+    <button onclick="showThis(this);">화살표 this</button>
+    <script>
+        let showThis = (element) => {
+            console.log(element);
+        }
+    </script>
+
+
+
+
+
+    <!-- 연습 문제 -->
+    <h1>빵 사세요~</h1>
+    <fieldset>
+        <legend>출력</legend>
+        <label for="breadName">메뉴명 : </label>
+        <input id="breadName" type="text" readonly>
+        <br>
+        <label for="breadPrice">가격 : </label>
+        <input id="breadPrice" type="number" readonly>
+    </fieldset>
+    <ul >
+        <li id="breadLi1">
+            메뉴, 가격
+        </li>
+            <ul>
+                <li id="breadLi2">
+                    정보
+                </li>
+            </ul>
+    </ul>
+    <button id="inB" onclick="inputDataBread();">입력</button>
+    <button id="outB" onclick="outputBread();">출력</button>
+    <script>
+        // let breadName;
+        // let breadPrice;
+        const bread = {};
+
+        const inputDataBread = function(){
+            let pt1 = prompt('메뉴명 입력');
+            let pt2 = prompt('가격 입력');
+            let breadName = pt1;
+            let breadPrice = pt2;
+            bread.name = breadName;
+            bread.price = breadPrice;
+            console.log(bread);
+
+        }
+
+        const outputBread = function(){
+            document.getElementById('breadLi1').innerText = '메뉴, 가격';
+            document.getElementById('breadLi2').innerText = '정보';
+            let result1='';
+            let result2='';
+            if(bread.name == null && bread.price == null){
+                console.log(bread.breadName);
+                alert('정보를 입력해주세요.');
+                return;
+            }else if(bread.name == '' && bread.price == ''){
+                result1 = '메뉴명 X, 가격 X';
+                result2 = '정보가 입력되지 않았어요.';
+            } else if(bread.name == ''){
+                result1 = '메뉴명 X';
+                result2 = '메뉴명이 입력되지 않았어요.';
+            } else if(bread.price ==''){
+                result1 = '가격 X';
+                result2 = '가격이 입력되지 않았어요.';
+            } 
+            document.getElementById('breadLi1').innerText = result1;
+            document.getElementById('breadLi2').innerText = result2;
+
+            if(bread.name != '' && bread.price != ''){
+                document.getElementById('breadName').value = bread.name;
+                document.getElementById('breadPrice').value = bread.price;
+                document.getElementById('breadLi1').innerText = '메뉴O, 가격O';
+                document.getElementById('breadLi2').innerText = '잘 입력 하셨어요~';
+            }
+
+            
+            
+        }
+    </script>
+
+    <h1>객체 배열</h1>
+    <script>
+        let customers = [
+            {
+                name : '영희',
+                age : 24
+            }
+        ];
+        // 대괄호는 배열이고 !!!!!중괄호는 객체다!!!!!
+        // console.log(customers);
+        // console.log(customers[0]['name']);
+        // console.log(customers[0].name);
+        
+        customers.push({
+            name : '철수',
+            gender : 'F'
+        });
+        customers.unshift({
+            name : '길동',
+            age : 51
+        });
+
+        customers.pop();
+        customers.shift();
+
+        console.log(customers);
+        // console.log(customers[1]['name']);
+        // console.log(customers[1].gender);
+    </script>
+
+
+
+
+
+
+
+
+
+
+
 
 </body>
 </html>
