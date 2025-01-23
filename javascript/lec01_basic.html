@@ -83,7 +83,24 @@
     </button>
     <script>
         function printDate(){
-            alert('2025-01-16');
+            // alert('2025-01-16');
+            let today = new Date();
+            // alert(today);
+            let year = today.getFullYear();
+            let month = today.getMonth()+1; // 월은 인덱스 0부터 시작해서 가져온다!!
+            let date = today.getDate();
+            let day = today.getDay(); // 인덱스0은 일요일! 숫자로 받아와지네
+            switch(day){
+                case 0 : day = '일'; break;
+                case 1 : day = '월'; break;
+                case 2 : day = '화'; break;
+                case 3 : day = '수'; break;
+                case 4 : day = '목'; break;
+                case 5 : day = '금'; break;
+                case 6 : day = '토'; break;
+            }
+            
+            alert(`${year}년 ${month}월 ${date}일 ${day}요일`);
         }
     </script>
 

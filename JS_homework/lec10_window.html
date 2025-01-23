@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>window 과제</title>
+</head>
+<body>
+    <h1>전자시계</h1>
+    <h3 id="clockDate">1123</h3>
+    <h1 id="clockTime">123123</h1>
+    <script>
+        setInterval(() => {
+            let clock = new Date();
+            let year = clock.getFullYear();
+            let month = clock.getMonth() +1;
+            let date = clock.getDate();
+            let hour = clock.getHours();
+            let minute = clock.getMinutes();
+            let second = clock.getSeconds();
+            // 12시간 표기로 어케함?
+            // if(hour >= 12){
+            //     hour = hour - 12;
+            // }
+            document.getElementById('clockDate').innerHTML = year + '-' + month + '-' + date;
+            document.getElementById('clockTime').innerHTML = hour + ':' + minute + ':' + second;
+        }, 1000);
+    </script>
+
+    <h1>행추가</h1>
+    <input id="rowValue" type="text">
+    <button onclick="makeTable();">출력</button>
+    <div id="addRowTableDiv">12</div>
+    <script>
+        const makeTable = function(){
+            let num = 1;
+            let row = document.getElementById('rowValue').value;
+            let div = document.getElementById('addRowTableDiv');
+            console.log(div.childElementCount);
+            let newTable;
+            // let tdNum = document.createTextNode(num);
+
+            if(div.childElementCount == 0){
+            newTable = document.createElement('table');
+            newTable.setAttribute('border',1);
+            newTable.setAttribute('id','newTable');
+
+            for(let i = 0; i < row; i++){
+                let tr = document.createElement('tr');
+                for(let j = 0; j < 4; j++){
+                    let td = document.createElement('td');
+                    let tdNum = document.createTextNode(num++);
+                    td.appendChild(tdNum);
+                    // num++;
+                    tr.appendChild(td);
+                }
+                newTable.appendChild(tr);
+            }
+            document.getElementById('addRowTableDiv').appendChild(newTable);
+            console.log(div.childElementCount);
+        } else{
+
+            let tdNum = document.getElementById('newTable').lastElementChild.lastElementChild.innerHTML;
+            console.log(tdNum);
+            for(let i = 0; i < row; i++){
+                let tr2 = document.createElement('tr');
+                for(let j = 0; j < 4; j++){
+                    let td2 = document.createElement('td');
+                    // let tdNum = document.createTextNode(num++);
+                    tdNum++;
+                    let addTdNum = document.createTextNode(tdNum);
+                    td2.appendChild(addTdNum);
+                    tr2.appendChild(td2);
+                }
+                document.getElementById('newTable').appendChild(tr2);
+            }
+            // document.getElementById('addRowTableDiv').appendChild(newTable);
+
+        }
+        }
+    </script>
+</body>
+</html>

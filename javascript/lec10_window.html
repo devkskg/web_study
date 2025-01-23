@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>window 객체(일종의 내장객체)</title>
+</head>
+<body>
+    <h1>창 열고 닫기</h1>
+    <button onclick="createWindow();">새로운 창 열기</button>
+    <script>
+        let newWindow;
+        const createWindow = function(){
+            // window.open();
+            // window.open('https://www.naver.com');
+            // window.open('https://www.naver.com', '_self');
+            // window.open('https://www.naver.com', '_blank');
+            // window.open('https://www.naver.com', '_blank');
+            newWindow = open('https://www.naver.com', '_blank', 'width=300, height=300');
+            // createWindow(); 
+        }
+    </script>
+    <button onclick="closeWindow();">창 닫기</button>
+    <script>
+
+        let closeWindow = function(){
+            // window.close();
+            newWindow.close();
+        }
+    </script>
+    <br>
+
+    <button onclick="openInput();">입력창 열기</button>
+    <button onclick="getInfo();">입력창 정보 가져오기</button>
+    <script>
+        let openInput = function(){
+            newWindow = open('','_blank','width=300, height=300');
+            newWindow.document.write('<label for="text_input">입력</label><input type="text" name="" id="text_input">'); // 위거 + 이거 => 새로운 창 안에 쓴다!
+        }
+
+        const getInfo = function(){
+            let text_input = newWindow.document.getElementById('text_input').value;
+            console.log(text_input);
+        }
+    </script>
+
+    <!-- 연습하기 -->
+    <!-- 1. 로그인 버튼 생성 -->
+    <!-- 2. 로그인 버튼을 클릭하면 아이디와 비밀번호를 입력할 수 있는 창이 생김 -->
+    <!-- 3. 새로운 창에 닫기 버튼을 클릭하면 창이 닫히게 구성 -->
+    <h1>로그인 해보십쇼</h1>
+    <button onclick="logInGo();">로그인</button>
+    <!-- <label for="logInId">아이디 : </label><input type="text" id="logInId"><br><label for="logInPw">비밀번호 : </label><input type="password" id="logInPw"><button onclick="window.close()">닫기</button> -->
+    <script>
+        let logInGoWindow;
+        const logInGo = function(){
+            logInGoWindow = open('','_blank','width=300, height=300');
+            logInGoWindow.document.write('<label for="logInId">아이디 : </label><input type="text" id="logInId"><br><label for="logInPw">비밀번호 : </label><input type="password" id="logInPw"><button onclick="window.close()">닫기</button>');
+        }
+        
+    </script>
+    <!-- <script>
+        const logInClose = function(){
+            logInGoWindow.close();
+    }
+    </script> -->
+    <!-- 새 창에 doc.write로 script를 넣을 수 없는가? -->
+
+    <h1>창 위치 변경</h1>
+    <button onclick="moveTest();">창 위치 변경</button>
+    <script>
+        const moveTest = function(){
+            newWindow.moveTo(Math.round(Math.random()*1500)+1, 500);
+            newWindow.resizeTo(100,300);
+        }
+    </script>
+
+    <!-- 스크롤 내장함수 쪽에다가 만들어볼게  -->
+
+
+    <h1>setTimeout</h1>
+    <button onclick="timeoutStart();">시작</button>
+    <button onclick="timeoutEnd();">종료</button>
+    <div id="container"></div>
+    <script>
+        let globalTime;
+        let timeoutStart = function(){
+            globalTime = setTimeout(function(){
+                document.getElementById('container').innerHTML = '<h1>3초 후에 타임아웃 얍!</h1>';
+            },3000);
+        }
+        let timeoutEnd = function(){
+            clearTimeout(globalTime);
+        }
+    </script>
+
+    <h1>interval</h1>
+    <button onclick="intervalStart();">시작</button>
+    <button onclick="intervalEnd();">종료</button>
+    <!-- <div id=""></div> -->
+    <script>
+        let globalInterval;
+        const intervalStart = function(){
+            let cnt = 10;
+            globalInterval = setInterval(() => {
+                document.getElementById('container').innerHTML += cnt-- +'<br>';
+                // if(cnt == 0){
+                // intervalEnd();
+                // }
+            }, 1000);
+            
+        }
+        const intervalEnd = function(){
+            clearInterval(globalInterval);
+        }
+    </script>
+
+
+    <!-- 연습 문제 -->
+    <h1>문제야~문제야~</h1>
+    <span id="cntNum">60</span><span>초</span>
+    <p>다음 중 프론트엔드 개발자가 다루는 언어가 아닌 것은?</p>
+    <select name="examSelect" id="selectVal" onchange="selectVal();">
+        <option value="0">선택하기</option>
+        <option value="1">1. CSS</option>
+        <option value="2">2. HTML</option>
+        <option value="3">3. JavaScript</option>
+        <option value="4">4. Java</option>
+    </select>
+    <p>
+        1. CSS <br>
+        2. HTML <br>
+        3. JavaScript <br>
+        4. Java
+    </p>
+    <button onclick="startExam();">시작</button>
+    <button onclick="submitExam();">제출</button>
+
+    <script>
+        let cntNum = 60;
+        let globInterval;
+        const selectVal = function(){
+            let val = document.getElementById('selectVal').value;
+            console.log(val);
+            return val;
+        }
+        const startExam = function(){
+            cntNum = document.getElementById('cntNum').innerHTML;
+            globInterval = setInterval(() => {
+                document.getElementById('cntNum').innerHTML = cntNum--;
+                if(cntNum < 0){
+                    stopExam();
+                    alert('시간 초과!');
+                }
+            }, 10);
+        }
+        const submitExam = function(){
+            if(selectVal() == 4){
+                alert('정답입니다~');
+            } else{
+                alert('틀렸소. 집에 가십쇼.');
+            }
+            stopExam();
+        }
+        const stopExam = function(){
+            clearInterval(globInterval);
+        }
+    </script>
+
+    <!-- onload -->
+    <h1 id="before_ele">before(전)</h1>
+    <script>
+        // 이 함수 때문에 새로고침 로드 끊기면 화면 전부 사라지는데?
+        window.onload = function(){
+            console.log(document.getElementById('before_ele').innerText);
+            console.log(document.getElementById('after_ele').innerText);
+        }
+    </script>
+    <h1 id="after_ele">after(후)</h1>
+
+    <!-- 내장 객체만 넘겨 주면 출력하는 게 아주 좋구만! -->
+    <button onclick="printInformation(screen);">screen 객체 출력</button>
+    <button onclick="printInformation(navigator);">navigator 객체 출력</button>
+    <button onclick="printInformation(history);">history 객체 출력</button>
+    <button onclick="printInformation(location);">location 객체 출력</button>
+    <!-- screen 은 JS가 갖고있는 내장 객체? -->
+    <div id="screen_div">
+
+    </div>
+    <script>
+        const printInformation =obj=>{
+            const div = document.getElementById('screen_div');
+            for(key in obj){
+                // div.innerHTML += `${key} <br>`;
+                div.innerHTML += `${key} : ${obj[key]} <br>`;
+            }
+        }
+    </script>
+    <button onclick="history.back();">이전</button>
+    <button onclick="history.forward();">앞으로</button>
+    <br>
+
+    <!-- 1. 새로운 페이지 로드 -->
+    <!-- (1) 뒤로 가기 가능(이력O) -->
+    <button onclick="location.href='https://www.naver.com'">href</button>
+    <button onclick="location.assign('https://www.naver.com');">assign</button>
+    <!-- (2) 뒤로 가기 가능(이력X) -->
+    <button onclick="location.replace('https://www.naver.com');">replace</button>
+    <!-- 2. 현재 페이지 다시 로드-->
+    <button onclick="location.reload();">reload</button>
+
+    <!-- 이제 innerHTML이런거 안쓸거다~ 요소 추가해보기~~~ -->
+    <h1>텍스트 노드가 있는 태그 생성</h1>
+    <button onclick="addTextElement();">태그 추가</button>
+    <button onclick="createImg();">이미지 추가</button>
+    <div id="tag_div">
+        
+    </div>
+    <script>
+        const createImg =()=>{
+            // document.getElementById('tag_div').innerHTML += '<img src="..s~!~!~!~!';
+            const imgTag = document.createElement('img');
+            imgTag.setAttribute('src','../resources/dung.png');
+            imgTag.setAttribute('alt','뚱이가 인사합니다.');
+            imgTag.setAttribute('width',20);
+            // imaTag.setAttribute('height',200);
+            // for(let i = 0; i < 50; i++){
+                document.getElementById('tag_div').appendChild(imgTag);
+                document.getElementById('tag_div').appendChild(imgTag);
+                // 이거 왜 여러번 안됨?
+            // }
+        }
+        const addTextElement = function(){
+            // document.getElementById('tag_div').innerHTML += '<p>Hello</p>'; //이게 원래 쓰던 방법
+            const pTag = document.createElement('p');
+            const pText = document.createTextNode('Hello');
+            pTag.appendChild(pText);
+            document.getElementById('tag_div').appendChild(pTag);
+        }
+    </script>
+
+        <!-- 연습 문제 -->
+    <!-- 일단은 태그, 문구가 전부 입력 된다는 가정 하에 진행 -->
+    <h1>텍스트 노드 있는 객체 생성</h1>
+    <input id="tagInput" type="text" placeholder="태그입력">
+    <input id="textInput" type="text" placeholder="문구입력">
+    <button onclick="tagTextGo();">버튼</button>
+    <div id="test_div"></div>
+    <script>
+        const tagTextGo =()=>{
+            let tag = document.getElementById('tagInput').value;
+            let text = document.getElementById('textInput').value;
+
+            const tagGo = document.createElement(tag);
+            const textGo = document.createTextNode(text);
+            tagGo.appendChild(textGo);
+            document.getElementById('test_div').appendChild(tagGo);
+        }
+    </script>
+
+    <!-- 연습 문제 -->
+    <h1>텍스트 노드 없는 객체 생성</h1>
+    <div id="input_div"></div>
+    <button onclick="practiceNoText();">생성버튼이오</button>
+    <script>
+        const practiceNoText = function(){
+            let tag = document.createElement('input');
+            tag.setAttribute('type','text');
+            tag.setAttribute('value','user01');
+            tag.setAttribute('id','user_id');
+            document.getElementById('input_div').appendChild(tag);
+        }
+    </script>
+
+
+
+
+
+    <h3>기준</h3>
+    <ul id="sample_ul">
+        <li>수박</li> 
+        <li>딸기</li> 
+        <li>레몬</li> 
+    </ul>
+    <h3>실제</h3>
+    <button onclick="makeList();">목록 생성</button>
+    <div id="ul_div"></div>
+    <script>
+        const makeList = function(){
+            // 딸기 레몬 추가하려면 이 짓을 세 번 해야 한다고?
+            // 강사님께서 더 좋은 방법을 알려주실거야!
+            // const li1 = document.createElement('li');
+            // const text1 = document.createTextNode('수박');
+            // li1.appendChild(text1);
+            // const ul = document.createElement('ul');
+            // ul.appendChild(li1);
+            // document.getElementById('ul_div').appendChild(ul);
+            let arr = ['수박', '딸기', '레몬'];
+            const ul = document.createElement('ul');
+
+            for(let i = 0; i < arr.length; i++){
+                const li = document.createElement('li');
+                const text = document.createTextNode(arr[i]);
+                li.appendChild(text);
+                ul.appendChild(li);
+            }
+            document.getElementById('ul_div').appendChild(ul);
+            // 아주 좋은 방법
+            // for of 를 사용하는 방법도 있을듯? 아래처럼?
+            // for(let ar of arr){
+            //     const li = document.createElement('li');
+            //     const text = document.createTextNode(arr[i]);
+            //     li.appendChild(text);
+            //     ul.appendChild(li);
+            // }
+
+        }
+    </script>
+
+
+
+    <h1>insertAdjacentElement</h1>
+    <style>
+        #insertDiv{border: 1px solid crimson;}
+        #origin{background-color: skyblue;}
+    </style>
+    <button onclick="insertTest();">원하는 위치에 추가</button>
+    <button onclick="changeInsert();">위치 변경</button>
+    <div id="insertDiv">
+        <h1 id="origin">판단용 h1</h1>
+    </div>
+    <script>
+        // div 안으로 ul 넣어버렸음
+        const changeInsert = function(){
+            const sample = document.getElementById('sample_ul');
+            const insertDiv = document.getElementById('insertDiv');
+            insertDiv.insertAdjacentElement('beforeend', sample);
+        }
+        // before after begin end 조심조심
+        const insertTest = function(){
+            const h3 = document.createElement('h3');
+            const h3Text = document.createTextNode('지정태그앞(형제)');
+            h3.appendChild(h3Text);
+            
+            const h2 = document.createElement('h2');
+            const h2Text = document.createTextNode('지정태그뒤!(형제)');
+            h2.appendChild(h2Text);
+
+            const div = document.getElementById('insertDiv');
+            div.insertAdjacentElement('beforebegin', h3);
+            // div.insertAdjacentElement('afterbegin', h3);
+            div.insertAdjacentElement('afterend', h2)
+        }
+    </script>
+
+    <!-- 연습 문제 -->
+    <h1>메뉴 추가</h1>
+    <ul id="ulMenu">
+        <!-- <li>짜장면</li>
+        <li>볶음밥</li>
+        <li>짬뽕</li> -->
+    </ul>
+    <input id="addMenu" type="text" placeholder="추가할 메뉴 작성">
+    <button onclick="addMenu();">추가</button>
+    <button onclick="downUpMenu();">이동</button>
+    <script>
+        const addMenu = function(){
+            let menu = document.getElementById('addMenu').value;
+            let add1 = document.createElement('li');
+            let add1Text = document.createTextNode(menu);
+            add1.appendChild(add1Text);
+            ulMenu.appendChild(add1);
+        }
+        const downUpMenu = function(){
+            let ulMenu = document.getElementById('ulMenu');
+            let moveMenu = document.getElementById('ulMenu').lastElementChild;
+            ulMenu.insertAdjacentElement('afterbegin',moveMenu);
+            // console.log(menu);
+        }
+    </script>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- 과제 미리 풀기 -->
+    <h1>과제 미리 풀기</h1>
+    <button onclick="createNewWindow();" id="createNewWindow">새로운 창 생성</button>
+    <button onclick="autoChange();" id="autoChange">자동 변경하기</button>
+    <button onclick="stopAll();" id="stopAll">멈추기</button>
+    <!-- <img style="width: 150; height: 150;" src="../resources/sponge.png" alt="스폰지가 웄고있다"> -->
+    <script>
+        let hw01_Window;
+        let hw01_globInterval;
+        const createNewWindow = function(){
+            hw01_Window = open('','_blank','width=300, height=300');
+            hw01_Window.document.write('<p><img style="width: 150; height: 150;" src="../resources/sponge.png" alt="스폰지가 웄고있다"></p>');
+        }
+        const autoChange = function(){
+            hw01_globInterval = setInterval(function(){
+                let rd1 = Math.floor(Math.random()*900)+1;
+                let rd2 = Math.floor(Math.random()*900)+1;
+                hw01_Window.moveTo(rd1, rd2);
+            }, 1)
+        }
+        const stopAll = function(){
+            clearInterval(hw01_globInterval);
+        }
+    </script>
+    
+</body>
+</html>
