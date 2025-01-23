@@ -56,6 +56,15 @@
                 let RD = Math.floor(Math.random()*45)+1;
                 arr[i] = RD;
             }
+
+            // 강사님 풀이 // 이렇게 해야 중복 숫자 안 나옴!
+            // while(lotto.length < 6){
+            //     let num = Math.floor(Math.random()*45 +1);
+            //     if(lotto.indexOf(num) === -1){
+            //         lotto.push(num);
+            //     }
+            // }
+
             arr.sort(function(l, r){
                 return l - r;
             });
