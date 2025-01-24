@@ -360,9 +360,9 @@
     <!-- 연습 문제 -->
     <h1>메뉴 추가</h1>
     <ul id="ulMenu">
-        <!-- <li>짜장면</li>
+        <li>짜장면</li>
         <li>볶음밥</li>
-        <li>짬뽕</li> -->
+        <li>짬뽕</li>
     </ul>
     <input id="addMenu" type="text" placeholder="추가할 메뉴 작성">
     <button onclick="addMenu();">추가</button>
@@ -374,12 +374,154 @@
             let add1Text = document.createTextNode(menu);
             add1.appendChild(add1Text);
             ulMenu.appendChild(add1);
+            document.getElementById('addMenu').value = '';
         }
         const downUpMenu = function(){
             let ulMenu = document.getElementById('ulMenu');
             let moveMenu = document.getElementById('ulMenu').lastElementChild;
             ulMenu.insertAdjacentElement('afterbegin',moveMenu);
+
+            // 요 아래는 강사님 풀이
+            // const lis = document.querySelectorAll('#target_ul > li');
+            // const lastLi = lis[lis.length-1];
+
+            // 위에 두 줄을 쉽게 접근 하는 법
+            // const lastLi = document.querySelector('#target_ul > li:lsat-child');
+
+            // 쿼리 셀렉터 생각 좀 해보고 복습 해보자
+            // 쿼리 셀렉터 생각 좀 해보고 복습 해보자
+            // 쿼리 셀렉터 생각 좀 해보고 복습 해보자
+            // 쿼리 셀렉터 생각 좀 해보고 복습 해보자
+            // 쿼리 셀렉터 생각 좀 해보고 복습 해보자
+            // 쿼리 셀렉터 생각 좀 해보고 복습 해보자
+            // 쿼리 셀렉터 생각 좀 해보고 복습 해보자
+            // 쿼리 셀렉터 생각 좀 해보고 복습 해보자
+            // 쿼리 셀렉터 생각 좀 해보고 복습 해보자
+            // 쿼리 셀렉터 생각 좀 해보고 복습 해보자
+            // 쿼리 셀렉터 생각 좀 해보고 복습 해보자
+
+            // document.getElementById('target_ul').insertAdjacentElement('afterbegin', lastLi);
             // console.log(menu);
+        }
+    </script>
+
+
+
+
+
+    <!-- NextDay -->
+    <h1>class 속성 추가 및 삭제</h1>
+    <style>
+        .colorful{
+            border: 3px dotted deepskyblue;
+            background-color: blueviolet;
+            color:blanchedalmond;
+            font-weight: bold;
+        }
+    </style>
+    <p id="standard">기준 p태그</p>
+    <button onclick="addClassTest();">colorful 클래스 추가</button>
+    <br>
+    <button onclick="removeClassTest();">colorful 클래스 삭제</button>
+    <script>
+        const addClassTest = function(){
+            document.getElementById('standard').classList.add('colorful');
+            console.log(document.getElementById('standard').className);
+        }
+        const removeClassTest = () =>{
+            document.getElementById('standard').classList.remove('colorful');
+            console.log(document.getElementById('standard').className);
+        }
+    </script>
+
+    <!-- 연습 문제 -->
+    <h1 id="hilightPtc">hilight 추가 연습</h1>
+    <button onclick="addHilight();">클래스 추가</button>
+    <br>
+    <button onclick="removeHilight();">클래스 추가</button>
+    <style>
+        .hilight{
+            color: green;
+            background-color: yellow;
+        }
+    </style>
+    <script>
+        const addHilight =()=>{
+            document.getElementById('hilightPtc').classList.add('hilight');
+            // document.getElementById('아이디').classList.add('클래스이름');
+        }
+        const removeHilight =()=>{
+            document.querySelector('.hilight').classList.remove('hilight');
+            // document.getElementById('hilightPtc').classList.remove('hilight');
+        }
+    </script>
+
+
+
+
+    <h1>주변태그 접근</h1>
+    <div id="searchTag">
+        <h2>얘는 h2에오</h2>
+        <ul>
+            <li>김</li>
+            <li>가</li>
+            <li>남</li>
+        </ul>
+        <!-- <ul>
+            <li>김</li>
+            <li>가</li>
+            <li>남</li>
+        </ul> -->
+        <button id="search_btn">주변 조회</button>
+        <button id="remove_btn">태그 제거</button>
+    </div>
+    <script>
+        // 변수 하나를 true로 설정해서 delete 버튼 동작 막는 방법
+        let trueOrFalse = true;
+        // remove() 를 사용할때 조심해야한다! 버튼이 남아있는 상태면 계속해서 지울 수 있다
+        document.getElementById('remove_btn').onclick = function(){
+            if(trueOrFalse == true){
+                let deleteElement = this.parentElement.children[1];
+                // deleteElement = this.previousElementSibling.previousElementSibling;
+                // 둘 다 사용 가능한 표기
+                deleteElement.remove();
+                // this.remove(); 이거 나름 괜찮은듯?
+                trueOrFalse = false;
+            }
+        }
+
+        // 이 방식은 고전 이벤트 모델 // 기존에 썼던 거는 인라인 이벤트 모델
+        document.getElementById('search_btn').onclick = function(){
+            // 고전에서 this 이렇게 쓰면 편하다
+            const tar = this;
+            const parent = tar.parentElement;
+            console.log(tar,parent);
+            const children = parent.children;
+            console.log(children);
+
+            const arr1 = this.parentElement.children;
+            console.log(arr1);
+
+            for(let i = 0; i < arr1.length; i++){
+                console.log(i+" : "+arr1[i].tagName);
+                // console.log(arr1[1].children[i]);
+                if(arr1[i].tagName == 'H2'){
+                    arr1[i].style.backgroundColor = 'gold';
+                } else if(arr1[i].tagName == 'UL'){
+                    const li = arr1[i].children;
+                    li[2].style.backgroundColor = 'skyblue';
+                    console.log(li[2]);
+                }
+            }
+            console.log('조금 띄워서 보는 용도의 콘솔 로그');
+            // 버튼의 부모의 두번째 자식의 첫번째 자식 접근
+            const firstLi = this.parentElement.children[1].children[0];
+            console.log(firstLi);
+            // 형제 관계의 접근
+            const secondLi = firstLi.nextElementSibling;
+            console.log(secondLi);
+            const ulTarget = document.getElementById('searchTag').children[1].previousElementSibling;
+            console.log(ulTarget);
         }
     </script>
 
