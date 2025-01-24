@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>알록달록 무지개</title>
+</head>
+<body>
+    <h1> rainbowColor </h1>
+    <form id="colorFrm">
+	<!-- <table border="1" style="border-collapse: collapse; text-align: center;">
+        <tr>
+            <td>전체선택</td>
+            <td>
+                <input type="checkbox"><label for="">빨</label>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><button>버튼</button></td>
+        </tr>
+    </table> -->
+    <table></table>
+    <script>
+            let table = document.getElementsByTagName('table')[0];
+            table.setAttribute('border','1');
+            let arr = ['빨', '주', '노', '초', '파', '남', '보'];
+            let checkBox;
+            let str;
+            let label;
+            let num = 0;
+            for(let i = 0; i < 9; i++){
+                let tr = document.createElement('tr');
+                for(let j = 0; j < 2; j++){
+                    let td = document.createElement('td');
+                    if(j == 1 && i != 8){
+                        for(let a of arr){
+                            checkBox = document.createElement('input');
+                            checkBox.setAttribute('type','checkbox');
+                            checkBox.setAttribute('class',a + i);
+                            checkBox.setAttribute('id',num);
+                            
+                            label = document.createElement('label');
+                            label.setAttribute('for',num++)
+
+                            str = document.createTextNode(a);
+                            label.appendChild(str);
+                            td.appendChild(checkBox);
+                            td.appendChild(label);
+                        }
+                    }
+                    tr.appendChild(td);
+                }
+                table.appendChild(tr);
+            }
+            let submitBtn = document.createElement('button');
+            let resetBtn = document.createElement('button');
+            let submitBtnStr = document.createTextNode('submit');
+            let resetBtnStr = document.createTextNode('reset');
+            // table.lastElementChild.child[0].setAttribute('colspan','2');
+            console.log(table.lastElementChild.child);
+            table.style.borderCollapse = 'collapse';
+            submitBtn.appendChild(submitBtnStr);
+            resetBtn.appendChild(resetBtnStr);
+            table.lastElementChild.lastElementChild.appendChild(submitBtn);
+            table.lastElementChild.lastElementChild.appendChild(resetBtn);
+            // console.log(table.lastElementChild.lastElementChild);
+            // table.appendChild(resetBtn);
+            // table.appendChild(submitBtn);
+            // console.log(table);
+    </script>
+</form> 
+</body>
+</html>

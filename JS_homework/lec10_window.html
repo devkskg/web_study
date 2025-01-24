@@ -111,12 +111,32 @@
 
 
     <h1>중복된 아이디</h1>
+    <style>
+        /* .checkIdBefore{display: none;} */
+        .canUseId{color: green;}
+        .cnaNotUseId{color: red;}
+    </style>
     <label for="checkId">아이디</label>
-    <input onkeyup="checkIdFunc();" id="checkId" type="text">
-    <div id="checkIdDiv">아이디 입력 해주라</div>
+    <input onkeyup="checkIdFunc(event);" id="checkId" type="text">
+    <div id="checkIdDiv" class="checkIdBefore">아이디 입력 해주라</div>
     <script>
-        const checkIdFunc = function(){
-            
+        const checkIdFunc = function(e){
+            let input = document.getElementById('checkId');
+            let div = document.getElementById('checkIdDiv');
+            if(input.value == ''){
+                div.classList.remove('canUseId');
+                div.classList.remove('cnaNotUseId');
+                div.innerHTML = '사용하실 아이디를 입력해주세요.';
+            }else if(input.value == 'user01'){
+                div.classList.remove('canUseId');
+                div.classList.add('cnaNotUseId');
+                div.innerHTML = '중복된 아이디';
+            } else{
+                div.classList.remove('cnaNotUseId');
+                div.classList.add('canUseId');
+                div.innerHTML = '사용가능한 아이디';
+
+            }
         }
     </script>
 </body>
