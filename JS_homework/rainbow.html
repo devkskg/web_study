@@ -23,30 +23,41 @@
     <script>
             let table = document.getElementsByTagName('table')[0];
             table.setAttribute('border','1');
-            let arr = ['빨', '주', '노', '초', '파', '남', '보'];
+            // table.setAttribute('text-align', 'center');
+            table.style.textAlign = 'center';
+            let arr1 = ['전체선택:','하나','둘','셋','넷','다섯','여섯','일곱'];
+            let arr2 = ['빨', '주', '노', '초', '파', '남', '보'];
             let checkBox;
             let str;
             let label;
             let num = 0;
+            let value = 1;
             for(let i = 0; i < 9; i++){
                 let tr = document.createElement('tr');
                 for(let j = 0; j < 2; j++){
                     let td = document.createElement('td');
+                    if(j == 0 && i != 8){
+                        // let td = document.createElement('td');
+                        let str = document.createTextNode(arr1[i]);
+                        td.appendChild(str);
+                    }
                     if(j == 1 && i != 8){
-                        for(let a of arr){
+                        for(let a of arr2){
                             checkBox = document.createElement('input');
                             checkBox.setAttribute('type','checkbox');
-                            checkBox.setAttribute('class',a + i);
-                            checkBox.setAttribute('id',num);
+                            checkBox.setAttribute('name',i);
+                            checkBox.setAttribute('id','id'+num);
+                            checkBox.setAttribute('value', value++);
                             
                             label = document.createElement('label');
-                            label.setAttribute('for',num++)
+                            label.setAttribute('for','id'+num++)
 
                             str = document.createTextNode(a);
                             label.appendChild(str);
                             td.appendChild(checkBox);
                             td.appendChild(label);
                         }
+                        value = 1;
                     }
                     tr.appendChild(td);
                 }
@@ -57,12 +68,18 @@
             let submitBtnStr = document.createTextNode('submit');
             let resetBtnStr = document.createTextNode('reset');
             // table.lastElementChild.child[0].setAttribute('colspan','2');
-            console.log(table.lastElementChild.child);
+            // console.log(table.lastElementChild.child);
             table.style.borderCollapse = 'collapse';
             submitBtn.appendChild(submitBtnStr);
             resetBtn.appendChild(resetBtnStr);
-            table.lastElementChild.lastElementChild.appendChild(submitBtn);
-            table.lastElementChild.lastElementChild.appendChild(resetBtn);
+            table.lastElementChild.lastElementChild.previousElementSibling.appendChild(submitBtn);
+            table.lastElementChild.lastElementChild.previousElementSibling.appendChild(resetBtn);
+            
+            // table.lastElementChild.lastElementChild.previousElementSibling.setAttribute('colspan', 2);
+            table.getElementsByTagName('tr')[8].getElementsByTagName('td')[0].setAttribute('colspan',2);
+            table.getElementsByTagName('tr')[8].getElementsByTagName('td')[1].remove();
+            console.log(table.lastElementChild.getElementsByTagName('td')[0]);
+
             // console.log(table.lastElementChild.lastElementChild);
             // table.appendChild(resetBtn);
             // table.appendChild(submitBtn);
