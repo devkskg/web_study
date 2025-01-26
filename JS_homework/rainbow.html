@@ -21,19 +21,27 @@
     </table> -->
     <table></table>
     <script>
+            // let 
             let table = document.getElementsByTagName('table')[0];
             table.setAttribute('border','1');
             // table.setAttribute('text-align', 'center');
             table.style.textAlign = 'center';
             let arr1 = ['전체선택:','하나','둘','셋','넷','다섯','여섯','일곱'];
             let arr2 = ['빨', '주', '노', '초', '파', '남', '보'];
+            let arr3 = ['red', 'orange', 'yellow', 'green', 'blue', 'NAVY', 'violet']
             let checkBox;
             let str;
             let label;
             let num = 0;
             let value = 1;
+            
+
+
+
+
             for(let i = 0; i < 9; i++){
                 let tr = document.createElement('tr');
+                // tr.setAttribute('class', 'classTr' + i);
                 for(let j = 0; j < 2; j++){
                     let td = document.createElement('td');
                     if(j == 0 && i != 8){
@@ -47,13 +55,17 @@
                             checkBox.setAttribute('type','checkbox');
                             checkBox.setAttribute('name',i);
                             checkBox.setAttribute('id','id'+num);
+                            // checkBox.setAttribute('class', 'class'+num);
                             checkBox.setAttribute('value', value++);
+                            // checkBox.setAttribute('checked', false);
+                            // checkBox.setAttribute('onclick', 'checkOutval();');
                             
                             label = document.createElement('label');
-                            label.setAttribute('for','id'+num++)
+                            label.setAttribute('for','id'+num++);
 
                             str = document.createTextNode(a);
                             label.appendChild(str);
+                            
                             td.appendChild(checkBox);
                             td.appendChild(label);
                         }
@@ -67,23 +79,136 @@
             let resetBtn = document.createElement('button');
             let submitBtnStr = document.createTextNode('submit');
             let resetBtnStr = document.createTextNode('reset');
+            submitBtn.appendChild(submitBtnStr);
+            resetBtn.appendChild(resetBtnStr);
+            submitBtn.setAttribute('type', 'button');
+            resetBtn.setAttribute('type', 'reset');
+            table.lastElementChild.lastElementChild.previousElementSibling.appendChild(submitBtn);
+            table.lastElementChild.lastElementChild.previousElementSibling.appendChild(resetBtn);
             // table.lastElementChild.child[0].setAttribute('colspan','2');
             // console.log(table.lastElementChild.child);
             table.style.borderCollapse = 'collapse';
-            submitBtn.appendChild(submitBtnStr);
-            resetBtn.appendChild(resetBtnStr);
-            table.lastElementChild.lastElementChild.previousElementSibling.appendChild(submitBtn);
-            table.lastElementChild.lastElementChild.previousElementSibling.appendChild(resetBtn);
             
             // table.lastElementChild.lastElementChild.previousElementSibling.setAttribute('colspan', 2);
             table.getElementsByTagName('tr')[8].getElementsByTagName('td')[0].setAttribute('colspan',2);
             table.getElementsByTagName('tr')[8].getElementsByTagName('td')[1].remove();
-            console.log(table.lastElementChild.getElementsByTagName('td')[0]);
+            // console.log(table.lastElementChild.getElementsByTagName('td')[0]);
 
             // console.log(table.lastElementChild.lastElementChild);
             // table.appendChild(resetBtn);
             // table.appendChild(submitBtn);
             // console.log(table);
+
+            // 하나 선택시 같은 줄 다른 것들 선택 취소
+            // let preArr = table.getElementsByTagName('tr')[0].getElementsByTagName('td');
+            let preArr = table.getElementsByTagName('tr'); // tr 배열
+            console.log(preArr);
+            for(let k = 0; k < preArr.length-1; k++){ 
+                let checkOutArr = table.getElementsByTagName('tr')[k].getElementsByTagName('td')[1].getElementsByTagName('input'); // 테이블의 한줄 input 배열
+                // console.log(checkOutArr[0]); // 이거는 빨간색만
+                // console.log(checkOutArr.length);
+                
+                for(let i = 0; i < checkOutArr.length; i++){
+
+                    checkOutArr[i].addEventListener('change', function(e){
+                        // console.log('얍얍');
+                        let arr = this.parentElement.getElementsByTagName('input');
+                        // let arr2 = table.get;
+                        // console.log(arr2);
+                        if(e.target.checked){
+                            // console.log(arr);
+                            if(k == 0){
+                                for(let j = 0; j < preArr.length-1; j++){
+                                // let pretg = preArr[j].getElementsByTagName('td')[1].getElementsByTagName('input');
+                                let tg = preArr[j].getElementsByTagName('td')[1].getElementsByTagName('input')[this.value-1];
+                                tg.checked = true;
+                                console.log(tg);
+                                }
+                            }
+                            for(let j = 0; j < checkOutArr.length; j++){
+                                if(j+1 != this.value){
+                                    // console.log(this);
+                                    arr[j].checked = false; // 아 이게 되네..
+                                }
+                                
+                            }
+                            // if(k == 0){
+                            //     for(let j = 0; j < checkOutArr.length; j++){
+                            //         // if(checkOutArr[this.value-1].value == this.value){
+                            //             // console.log(this);
+                            //             checkOutArr[this.value-1].checked = true; // 아 이게 되네..
+                            //         // }
+                                    
+                            //     }
+                            // }
+                            
+                        }
+                    });
+
+                    // 전체 선택 행에서 선택시 모든 컬럼 선택
+                    // if(k == 0){
+                    //     checkOutArr[i].addEventListener('change', function(e){
+                    //         for(let j = 0; j < preArr.length-1; j++){
+                    //             let tg = preArr[j].getElementsByTagName('td')[1].getElementsByTagName('input')[this.value-1];
+                    //             tg.checked = true;
+                    //             console.log(tg);
+                    //         }
+                    //     });
+                    // }
+                }
+                // if(k == 0){
+                //                 for(let j = 0; j < checkOutArr.length; j++){
+                //                     if(checkOutArr[this.value-1].value == this.value){
+                //                         // console.log(this);
+                //                         checkOutArr[this.value-1].checked = true; // 아 이게 되네..
+                //                     }
+                                    
+                //                 }
+                //             }
+            }
+            // console.log(test);
+            // checkOutVal = function(){
+            //     console.log('메롱');
+            //     // let val = document.getElementsByName(0).value;
+            //     // switch(val){
+            //     //     case 1 : console.log('메롱');
+            //     // }
+            // }
+            // document.getElementsByName(0).addEventListener('checked', function(e){
+            //     console.log('삐비비비');
+            // });
+
+            
+
+
+            // 색깔 입히기
+            let input = table.getElementsByTagName('input');
+            let btn = table.getElementsByTagName('button');
+            // console.log(input);
+            // console.log(btn);
+            btn[0].addEventListener('click', function(e){
+                // console.log('sdfsdf');
+                for(let k = 1; k <=7; k++){
+                    let checkOutRow = table.getElementsByTagName('tr')[k];
+                    let checkOutArr = checkOutRow.getElementsByTagName('td')[1].getElementsByTagName('input');
+
+                    console.log(checkOutArr);
+                    for(let j = 0; j < 7; j++){
+                        if(checkOutArr[j].checked){
+                            checkOutRow.style.backgroundColor = arr3[j];
+                        }
+                    }
+
+                }
+            });
+
+            // 리셋
+            btn[1].addEventListener('click', function(e){
+                for(let k = 1; k <=7; k++){
+                    let checkOutRow = table.getElementsByTagName('tr')[k];
+                    checkOutRow.style.backgroundColor = 'white';
+                }
+            });
     </script>
 </form> 
 </body>
