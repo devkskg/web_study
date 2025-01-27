@@ -20,6 +20,7 @@
         </tr>
     </table> -->
     <table></table>
+    <!-- <button onclick="allClear();"></button> -->
     <script>
             // let 
             let table = document.getElementsByTagName('table')[0];
@@ -35,10 +36,20 @@
             let num = 0;
             let value = 1;
             
+            let allClear = function(){
+                let trArrClear = table.getElementsByTagName('tr');
+                for(let q = 1; q < preArr.length; q++){
+                    let tdArrClear = trArrClear[q].getElementsByTagName('input');
+                    for(let w = 0; w < tdArrClear.length; w++){
+                        tdArrClear[w].checked = false;
+                    }
+        
+                }
+            }
+            
+            
 
-
-
-
+            
             for(let i = 0; i < 9; i++){
                 let tr = document.createElement('tr');
                 // tr.setAttribute('class', 'classTr' + i);
@@ -102,7 +113,7 @@
             // 하나 선택시 같은 줄 다른 것들 선택 취소
             // let preArr = table.getElementsByTagName('tr')[0].getElementsByTagName('td');
             let preArr = table.getElementsByTagName('tr'); // tr 배열
-            console.log(preArr);
+            // console.log(preArr);
             for(let k = 0; k < preArr.length-1; k++){ 
                 let checkOutArr = table.getElementsByTagName('tr')[k].getElementsByTagName('td')[1].getElementsByTagName('input'); // 테이블의 한줄 input 배열
                 // console.log(checkOutArr[0]); // 이거는 빨간색만
@@ -117,7 +128,8 @@
                         // console.log(arr2);
                         if(e.target.checked){
                             // console.log(arr);
-                            if(k == 0){
+                            if(k == 0 ){
+                                allClear();
                                 for(let j = 0; j < preArr.length-1; j++){
                                 // let pretg = preArr[j].getElementsByTagName('td')[1].getElementsByTagName('input');
                                 let tg = preArr[j].getElementsByTagName('td')[1].getElementsByTagName('input')[this.value-1];
@@ -141,7 +153,15 @@
                                     
                             //     }
                             // }
-                            
+                        } else{
+                            if(k == 0){
+                                for(let j = 0; j < preArr.length-1; j++){
+                                    // let pretg = preArr[j].getElementsByTagName('td')[1].getElementsByTagName('input');
+                                    let tg = preArr[j].getElementsByTagName('td')[1].getElementsByTagName('input')[this.value-1];
+                                    tg.checked = false;
+                                    // console.log(tg);
+                                }
+                            }
                         }
                     });
 
@@ -209,6 +229,7 @@
                     checkOutRow.style.backgroundColor = 'white';
                 }
             });
+
     </script>
 </form> 
 </body>
