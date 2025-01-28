@@ -7,15 +7,26 @@
 </head>
 <body>
     <p>p태그1</p>
-    <button id="btn">버튼1</button>
+    <button id="btn1">버튼1</button>
+    <button id="btn2">버튼2</button>
+    <!-- <button id="btn2" onclick="alert('테스트알럿')">버튼2</button> -->
     <script>
-        // document.getElementById('btn').addEventListener('click', function(e){
-        //     document.write('테스트1');
-        //     document.write('테스트2');
-        //     document.write('<h1>h1테스트</h1>')
-        // });
-        let arr = new Array(3, 1);
-        console.log(arr);
+        document.getElementById('btn1').addEventListener('click', function(e){
+            let str = '테스트알럿';
+            document.write('테스트1');
+            document.write('테스트2');
+            document.write('<h1>h1테스트</h1>');
+            document.write(`<button id="btn2" onclick="alert('sdf')">버튼2</button>`);
+        });
+        // btn1번에서 새로운 doc.write로 덮여씌워져서 스크립트가 없어진다.
+        // 기존 DOM트리와 함께 작성했던 스크립트가 지워진다.
+        document.getElementById('btn2').addEventListener('click', function(e){
+            document.write('버튼2번 테스트1');
+            document.write('버튼2번 테스트2');
+            document.write('<h1>h1테스트</h1>')
+        });
+        // let arr = new Array(3, 1);
+        // console.log(arr);
     </script>
 </body>
 </html>
