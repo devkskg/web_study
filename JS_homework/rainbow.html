@@ -22,6 +22,7 @@
             let num = 0;
             let value = 1;
             
+            // 2행부터 체크 모두 해제
             let allClear = function(){
                 let trArrClear = table.getElementsByTagName('tr');
                 for(let q = 1; q < preArr.length; q++){
@@ -32,15 +33,18 @@
                 }
             }
             
+            // 테이블 구성요소(td,tr) 만들기
             for(let i = 0; i < 9; i++){
                 let tr = document.createElement('tr');
                 for(let j = 0; j < 2; j++){
                     let td = document.createElement('td');
                     if(j == 0 && i != 8){
+                        // 1열 텍스트 넣기
                         let str = document.createTextNode(arr1[i]);
                         td.appendChild(str);
                     }
                     if(j == 1 && i != 8){
+                        // input 구성요소 넣기 (name, class, value 를 좀 더 신경 써서 해야할 필요가 있다.)
                         for(let a of arr2){
                             checkBox = document.createElement('input');
                             checkBox.setAttribute('type','checkbox');
@@ -60,6 +64,7 @@
                 }
                 table.appendChild(tr);
             }
+            // 버튼 생성(체크된 색상 적용, 색상 및 체크 초기화)
             let submitBtn = document.createElement('button');
             let resetBtn = document.createElement('button');
             let submitBtnStr = document.createTextNode('submit');
@@ -84,21 +89,23 @@
                         
                         let arr = this.parentElement.getElementsByTagName('input');
                         if(e.target.checked){
+                            // 전체선택이 체크 될 경우, 하위 행(2~8행)들의 체크박스 true
                             if(k == 0 ){
                                 allClear();
                                 for(let j = 0; j < preArr.length-1; j++){
                                 let tg = preArr[j].getElementsByTagName('td')[1].getElementsByTagName('input')[this.value-1];
                                 tg.checked = true;
-                                console.log(tg);
                                 }
                             }
+                            // 선택되지 않은 같은 행의 체크박스 해제
                             for(let j = 0; j < checkOutArr.length; j++){
                                 if(j+1 != this.value){
-                                    arr[j].checked = false; // 아 이게 되네..
+                                    arr[j].checked = false; // 이 표현 꼭 외워야함
                                 }
                                 
                             }
                         } else{
+                            // 전체선택 취소시 하위 행들의 체크박스 false
                             if(k == 0){
                                 for(let j = 0; j < preArr.length-1; j++){
                                     let tg = preArr[j].getElementsByTagName('td')[1].getElementsByTagName('input')[this.value-1];
@@ -109,7 +116,7 @@
                     });
                 }
             }
-            // 색깔 입히기
+            // 색깔 입히기 버튼 이벤트(선택된 색상을 같은 행에 스타일-백그라운드 적용)
             let input = table.getElementsByTagName('input');
             let btn = table.getElementsByTagName('button');
             btn[0].addEventListener('click', function(e){
@@ -125,7 +132,7 @@
                     }
                 }
             });
-            // 리셋
+            // 리셋 버튼 이벤트(색상 초기화 및 앞에서 정의한 type=reset 속성으로 체크도 해제)
             btn[1].addEventListener('click', function(e){
                 for(let k = 1; k <=7; k++){
                     let checkOutRow = table.getElementsByTagName('tr')[k];
