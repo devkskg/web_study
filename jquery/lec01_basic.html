@@ -4,8 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>jQuery 기초</title>
+    <!-- jQuery Download 방식 -->
+    <script src="../resources/jquery-3.7.1.js"></script>
 </head>
 <body>
+    <!-- 1. 다운로드 jquery 불러와주기 필수 -->
+    <!-- 2. ready 필수-->
+
+    
+    <script>
+        // ready 덕분에 다른 애들보다 앞에 코드를 작성해도 잘 작동한다.
+        $(document).ready(function(){
+            console.log($('p').html());
+        });
+        // 축약버전
+        $(function(){
+            console.log($('p').text());
+        })
+    </script>
+    <p>클릭하세요!</p>
+    <p>테스트용 두번째 p</p>
+    <script>
+        document.getElementsByTagName('p')[0].onclick = function(){
+            alert('테스트1');
+        }
+        // 제이쿼리는 자바스크립트보다 실행 속도가 빠르다.
+        // 그래서 제이쿼리(아래)가 더 빠르게 읽혀서 제이쿼리(다운로드했던 내용인 위쪽)가 제대로 적용되지 못한다.
+        // !!!! 그래서 onload를 써야한다 !!!!
+        $('p').click(function(){
+            alert('테스트2');
+        })
+    </script>
+
+    <script>
+        window.onload = function(){
+            console.log('onload(1)');
+        }
+    </script>
+
+
+    <!-- jQuery CDN 방식 -->
+    <!-- <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script> -->
     
 </body>
 </html>

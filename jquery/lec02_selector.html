@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../resources/jquery-3.7.1.js"></script>
+</head>
+<body>
+    <h1>아이디 선택자</h1>
+    <h2 id="js_id">자바스크립트</h2>
+    <h2 id="jquery_id">제이쿼리</h2>
+    <script>
+        document.getElementById('js_id').onclick = function(){
+            this.style.color = 'crimson';
+        }
+        $(document).ready(function(){
+            $('#jquery_id').on('click',function(){
+                // this.style.color = '';
+                // 제이쿼리는 자바스크립트의 객체에 접근을 못한다.
+                // 제이쿼리에서는 this, event.target이런거 쓸때 ㅇㅇㅇ에 넣어줘야한다.
+                $(this).css('color', 'gold');
+            });
+        })
+    </script>
+
+
+<!-- 아이템 클래스는 JS로 접근 / 포인트 클래스는 jquery로 접근 해보자 -->
+    <h1>클래스 선택자</h1>
+    <h3 class="item">클래스 1</h3>
+    <span class="item point">클래스 2</span>
+    <div class="point">클래스 3 </div>
+    <script>
+        // JS 방식(인덱스 또는 반복문이 필요하다.)
+        const items = document.getElementsByClassName('item');
+        for(let i = 0; i < items.length; i++){
+            items[i].onclick = function(){
+                this.style.color = 'aqua';
+            }
+        }
+        // jquery 방식(인덱스 또는 반복문이 없어도 전체 접근 가능하다.)
+        $(function(){
+            $('.point').on('click', function(){
+                // $('.point').css('backgroundColor','violet');
+                $(this).css('backgroundColor', 'pink');
+            })
+        })
+    </script>
+
+    <h1>태그 선택자</h1>
+    <p>HTML</p>
+    <p>CSS</p>
+    <h4>JavaScript</h4>
+    <h4>jQuery</h4>
+    <script>
+        // 1. JavaScript 방식 -> 태그명이 p인 요소 클릭했을 때
+        //                      -> 글자색을 coral로 변경
+        let pTag = document.getElementsByTagName('p');
+        for(let i = 0; i < pTag.length; i++){
+            pTag[i].onclick = function(){
+                this.style.color = 'coral';
+            }
+        }
+
+        // 2. jQuery 방식 -> 태그명이 h4인 요소를 클릭했을 때
+        //                  -> 글자색이 green으로 변경
+        $(function(){
+            $('h4').on('click', function(){
+                $(this).css('color', 'green');
+            })
+        })
+        // 이런식으로도 가능할듯
+        $(function(){
+            let rdR = Math.floor(Math.random()*256);
+            let rdG = Math.floor(Math.random()*256);
+            let rdB = Math.floor(Math.random()*256);
+            // let rdRGB = rgb(rdR, rdG, rdB);
+            $('h4').on('mouseover', function(){
+                $(this).css('backgroundColor', 'rgb('+rdR+','+rdG+','+rdB+')');
+            })
+        })
+        // touch 종류들은 모바일에서 주로 사용한다.
+        // $(function(){
+        //     $('h4').on('touchmove', function(){
+        //         $(this).css('backgroundColor', 'black');
+        //     })
+        // })
+    </script>
+
+
+    <h1>자손,후손 선택자</h1>
+    <div id="sonTag">
+        <ul>
+            div의 자손1
+            <li>ul의 자손1</li>
+            <li>ul의 자손2</li>
+            <li>ul의 자손3</li>
+            <li>
+                <h3>li4의 자손1</h3>
+            </li>
+        </ul>
+        <h3>div의 자손2</h3>
+        <h4>div의 자손3</h4>
+    </div>
+    <script>
+        // 쿼리셀렉터는 딱 하나만 적용 된다.
+        // 쿼리셀렉터ALL 쓰려면 인덱스 또는 반복문 필요.
+        document.querySelector('#sonTag > h3').addEventListener('click', function(e){
+            e.target.style.color = 'blue';
+        });
+
+        // 바닐라 형식으로는 아래처럼 많이 쓴다.
+        const babyTag = document.querySelectorAll('#sonTag h3');
+        for(let i = 0; i < babyTag.length; i++){
+            babyTag[i].addEventListener('click', function(e){
+                this.style.border = '2px dashed green';
+            });
+        }
+
+        // jQuery 방식
+        $(function(){ // 우선 ready 해줬다.
+            $('#sonTag h3').on('click', function(){
+                $(this).css('backgroundColor', 'gold');
+            });
+        })
+        // 자손은 교안 확인!
+    </script>
+
+    <h1>속성 선택자</h1>
+    <input type="text" placeholder="속성 테스트">
+    <script>
+        // JS 방식
+        const inputTag = document.querySelectorAll('input[type = text]');
+        for(let i = 0; i < inputTag.length; i++){
+            // inputTag[i].addEventListener('keyup', function(){
+            //     this.style.backgroundColor = 'red';
+            // });
+            inputTag[i].onkeyup = function(event){
+                event.target.style.color = 'yellow';
+            }
+        }
+
+        // jQuery 방식
+        $(function(){
+            $('input[type = text]').on('keyup', function(e){
+                $(e.target).css('backgroundColor', 'purple');
+            });
+        })
+    </script>
+
+    <h1>상태 선택자</h1>
+    <input type="checkbox" name="cake" value="1" id="straw">
+    <label for="straw">딸기</label>
+    <br>
+    <input type="checkbox" name="cake" value="2" id="choco">
+    <label for="choco">초코</label>
+    <!-- 몇개 선택했는지 확인해보자 -->
+    <div id="result_cnt">
+        0개
+    </div>
+    <script>
+        $(function(){
+            $('input[name=cake]').on('change', function(){
+                // 이거 표현 중요하다
+                const cnt = $('input[name=cake]:checked').length;
+                $('#result_cnt').html(cnt + '개');
+            });
+        })
+    </script>
+
+    <select name="menu">
+        <option value="1">짜장</option>
+        <option value="2">짬뽕</option>
+        <option value="3">울면</option>
+    </select>
+    <button id="menu_btn">주문하기</button>
+    <div id="result_menu">
+        메뉴를 선택하세요.
+    </div>
+    <script>
+        $(function(){
+            $('#menu_btn').on('click', function(){
+                let txt = $('select[name=menu] option:selected').text();
+                console.log(txt);
+                $('#result_menu').html(txt);
+            });
+        })
+    </script>
+    <button>활성버튼</button>
+    <button disabled>😺🐧🐥🐤🐣🦊</button>
+    <script>
+        $(function(){
+            $('button:enabled').css('backgroundColor', 'green');
+            $('button:disabled').css('backgroundColor', 'orange');
+        })
+    </script>
+
+
+    <h1>구조 선택자</h1>
+    <table id="table_style" border="1">
+        <caption>구조선택자</caption>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+        </tr>
+        <tr>
+            <td>9</td>
+            <td>10</td>
+            <td>11</td>
+            <td>12</td>
+        </tr>
+        <tr>
+            <td>13</td>
+            <td>14</td>
+            <td>15</td>
+            <td>16</td>
+        </tr>
+    </table>
+    <button onclick="changeTableStyle();">스타일 추가</button>
+    <script>
+        const changeTableStyle = function(){
+            // console.log('확인용');
+            $('#table_style tr:first').css('backgroundColor', '#fcba03');
+            $('#table_style > tbody > tr:last').css('backgroundColor', '#4287f5');
+            // odd -> 홀수 인덱스, even -> 짝수 인덱스
+            $('#table_style td:odd').css('color', '#fc5e03');
+            // $('#table_style > tbody > tr > td:even').css('color', 'skyblue');
+            // 인덱스가 2번인 td (3,7,11,15 숫자가 담긴 td)
+            // $('#table_style>tbody>tr>td:eq(2)').css('width', '200px');
+            $('#table_style>tbody>tr>td:eq(2)').css('color', 'yellow');
+
+            // lt -> n보다 작은, gt -> n보다 큰 애
+            // less than 2보다 작은 애들!
+            $('#table_style tr:first td:lt(2)').css('border', '3px solid yellow');
+            $('#table_style tr:first td:gt(2)').css('border', '3px solid red');
+        }
+    </script>
+
+
+    <!-- 연습 문제 -->
+    <div class="test_div">
+        <button id="confirm_btn">실행</button>
+    </div>
+
+    <script>
+        // 꼭꼭 ready 해야한다!!!!!
+        // 꼭꼭 ready 해야한다!!!!!
+        // 꼭꼭 ready 해야한다!!!!!
+        // 꼭꼭 ready 해야한다!!!!!
+        // 꼭꼭 ready 해야한다!!!!!
+        // 꼭꼭 ready 해야한다!!!!!
+        // 꼭꼭 ready 해야한다!!!!!
+
+        // 1. id선택자
+        $(function(){
+            $('#confirm_btn').on('click', function(){
+                if(confirm('개인정보활용에 동의하시겠습니까?')){
+                    alert('다음 단계로 진행합니다.');
+                } else{
+                    alert('개인정보활용 동의없이 회원가입을 진행할 수 없습니다.');
+                }
+            });
+        })
+        // 2. 클래스 선택자의 후손
+        // $('.test_div button').on('click', function(){
+        //     if(confirm('개인정보활용에 동의하시겠습니까?')){
+        //         alert('다음 단계로 진행합니다.');
+        //     } else{
+        //         alert('개인정보활용 동의없이 회원가입을 진행할 수 없습니다.');
+        //     }
+        // });
+        // 3. 클래스 선택자의 자손
+        // $('.test_div > button').on('click', function(){
+        //     if(confirm('개인정보활용에 동의하시겠습니까?')){
+        //         alert('다음 단계로 진행합니다.');
+        //     } else{
+        //         alert('개인정보활용 동의없이 회원가입을 진행할 수 없습니다.');
+        //     }
+        // });
+        // 4. 태그명의 자손
+        // $('div > button').on('click', function(){
+        //     if(confirm('개인정보활용에 동의하시겠습니까?')){
+        //         alert('다음 단계로 진행합니다.');
+        //     } else{
+        //         alert('개인정보활용 동의없이 회원가입을 진행할 수 없습니다.');
+        //     }
+        // });
+        // 5. 태그명의 id자손
+        // $('div > #confirm_btn').on('click', function(){
+        //     if(confirm('개인정보활용에 동의하시겠습니까?')){
+        //         alert('다음 단계로 진행합니다.');
+        //     } else{
+        //         alert('개인정보활용 동의없이 회원가입을 진행할 수 없습니다.');
+        //     }
+        // });
+        // 6. 태그명의 후손
+        // $('div button').on('click', function(){
+        //     if(confirm('개인정보활용에 동의하시겠습니까?')){
+        //         alert('다음 단계로 진행합니다.');
+        //     } else{
+        //             alert('개인정보활용 동의없이 회원가입을 진행할 수 없습니다.');
+        //         }
+        //     });
+        // 7. 이것저것 테스트
+        // $('div button').on('click', funcA());
+        //     let funcA = function(){
+        //         if(confirm('개인정보활용에 동의하시겠습니까?')){
+        //             alert('다음 단계로 진행합니다.');
+        //         } else{
+        //             alert('개인정보활용 동의없이 회원가입을 진행할 수 없습니다.');
+        //         }
+        //     }
+            
+    </script>
+</body>
+</html>
