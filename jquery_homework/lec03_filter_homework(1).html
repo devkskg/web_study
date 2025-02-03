@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery lec03 과제1</title>
+    <script src="../resources/jquery-3.7.1.js"></script>
+</head>
+<body>
+    <h1>요소 탐색 총정리</h1>
+    <div id="prompt_div">
+        <h2>promt로 입력받기</h2>
+        <button>실행</button>
+        <div></div>
+    </div>
+    <script>
+        $(function(){
+            $('#prompt_div > button').on('click', function(){
+                let str = prompt('메시지를 입력하세요.');
+                $('#prompt_div > div').html(str);
+            })
+        })
+    </script>
+
+    <h1>랜덤 뽑기</h1>
+    <button id="rd_btn">골라~ 골라~ 랜덤 뽑기 골라~</button>
+    <div id="rd_div"></div>
+    <script>
+        $(function(){
+            $('#rd_btn').on('click', function(){
+                let arr = [];
+                let rd1 = Math.floor(Math.random()*100)+1;
+                let rd2 = Math.floor(Math.random()*100)+1;
+                let rd3 = Math.floor(Math.random()*100)+1;
+                let rd4 = Math.floor(Math.random()*100)+1;
+                let rd5 = Math.floor(Math.random()*100)+1;
+                arr[0] = rd1;
+                arr[1] = rd2;
+                arr[2] = rd3;
+                arr[3] = rd4;
+                arr[4] = rd5;
+                arr.sort(function(a,b){
+                    if(a > b){
+                        return 1;
+                    } else{
+                        return -1;
+                    }
+                });
+                console.log(arr);
+                
+                $('#rd_div').html(arr.join());
+            })
+        })
+    </script>
+
+    <h1 id="table_h1">출석부</h1>
+    <button id="table_btn">테이블 출력</button>
+    <table id="table_table" border="1"></table>
+
+    <script>
+        const arr = [
+            {name:'김철수',age:20,address:'서울'},
+            {name:'이영희',age:30,address:'부산'},
+            {name:'최철수',age:40,address:'광주'}
+        ];
+        $('#table_btn').on('click', function(){
+
+            // let table = document.createElement('table');
+            // table.setAttribute('border', '1');
+            // console.log();
+            // $.each(user, function(key, value){
+            //         console.log(key +' : '+ value);
+            //     })
+            $.each(arr, function(key, value){
+                // $('#table_table').append('<tr>');
+                // $('#table_table > tr:eq('+key+')').append('<td>');
+                // $('#table_table > tr:eq('+key+') > td').append(arr[key]);
+                // $('#table_table > tr:eq('+key+')').append('<td>');
+                // $('#table_table > tr:eq('+key+') > td:eq(1)').append(arr[key]);
+                // $('#table_table > tr:eq('+key+')').append('<td>');
+                // $('#table_table > tr:eq('+key+') > td:eq(2)').append(arr[key]);
+
+                $('#table_table').append('<tr>');
+                $('#table_table > tr:eq('+key+')').append('<td>');
+                $('#table_table > tr:eq('+key+') > td').append(arr[key].name);
+                $('#table_table > tr:eq('+key+')').append('<td>');
+                $('#table_table > tr:eq('+key+') > td:eq(1)').append(arr[key].age);
+                $('#table_table > tr:eq('+key+')').append('<td>');
+                $('#table_table > tr:eq('+key+') > td:eq(2)').append(arr[key].address);
+            });
+            // document.getElementById('table_btn').insertAdjacentElement('afterend', table);
+        })
+    </script>
+
+</body>
+</html>
