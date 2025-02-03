@@ -16,6 +16,7 @@
     <script>
         $(function(){
             $('#prompt_div > button').on('click', function(){
+                // 버튼을 눌러 prompt를 실행 -> 입력받은 값을 후손 div의 html로 재할당.
                 let str = prompt('메시지를 입력하세요.');
                 $('#prompt_div > div').html(str);
             })
@@ -27,6 +28,7 @@
     <div id="rd_div"></div>
     <script>
         $(function(){
+            // 지금 풀때는 나열하면서 풀었지만 나중에 each문으로 줄여서 쓰는 방법 해봐야함.
             $('#rd_btn').on('click', function(){
                 let arr = [];
                 let rd1 = Math.floor(Math.random()*100)+1;
@@ -48,6 +50,9 @@
                 });
                 console.log(arr);
                 
+                // 여기 안에 들어가는 요소가 arr 이면 숫자만 다다닥 나옴
+                // 요소가 arr + 구분자면 arr[0], arr[1] .. 이렇게 나옴
+                // 여기서 구분자란 문자열 등의 요소라고 예상중.
                 $('#rd_div').html(arr.join());
             })
         })
@@ -55,41 +60,70 @@
 
     <h1 id="table_h1">출석부</h1>
     <button id="table_btn">테이블 출력</button>
-    <table id="table_table" border="1"></table>
+    <table id="table_table" border="1" style="text-align: center;"></table>
 
     <script>
+        // 주어진 배열
         const arr = [
             {name:'김철수',age:20,address:'서울'},
             {name:'이영희',age:30,address:'부산'},
             {name:'최철수',age:40,address:'광주'}
         ];
+        // 버튼 이벤트 
         $('#table_btn').on('click', function(){
-
-            // let table = document.createElement('table');
-            // table.setAttribute('border', '1');
-            // console.log();
-            // $.each(user, function(key, value){
-            //         console.log(key +' : '+ value);
-            //     })
+            // 테이블의 1행 생성
+            $('#table_table').append('<tr>');
             $.each(arr, function(key, value){
-                // $('#table_table').append('<tr>');
-                // $('#table_table > tr:eq('+key+')').append('<td>');
-                // $('#table_table > tr:eq('+key+') > td').append(arr[key]);
-                // $('#table_table > tr:eq('+key+')').append('<td>');
-                // $('#table_table > tr:eq('+key+') > td:eq(1)').append(arr[key]);
-                // $('#table_table > tr:eq('+key+')').append('<td>');
-                // $('#table_table > tr:eq('+key+') > td:eq(2)').append(arr[key]);
-
+                $('#table_table > tr:eq(0)').append('<td>');
+                // 객체의 key값을 입력하는 방법
+                let littleTitle = Object.keys(arr[key])[key];
+                $('#table_table > tr > td:eq('+key+')').append(littleTitle);
+                // 이하 코드들을 이중each나 for문 한 번 더 사용하면서 littleTitle을 같이 쓰면 요약 가능할 듯
                 $('#table_table').append('<tr>');
-                $('#table_table > tr:eq('+key+')').append('<td>');
-                $('#table_table > tr:eq('+key+') > td').append(arr[key].name);
-                $('#table_table > tr:eq('+key+')').append('<td>');
-                $('#table_table > tr:eq('+key+') > td:eq(1)').append(arr[key].age);
-                $('#table_table > tr:eq('+key+')').append('<td>');
-                $('#table_table > tr:eq('+key+') > td:eq(2)').append(arr[key].address);
+                $('#table_table > tr:eq('+(key+1)+')').append('<td>');
+                $('#table_table > tr:eq('+(key+1)+') > td:eq('+0+')').append(arr[key].name);
+                $('#table_table > tr:eq('+(key+1)+')').append('<td>');
+                $('#table_table > tr:eq('+(key+1)+') > td:eq(1)').append(arr[key].age);
+                $('#table_table > tr:eq('+(key+1)+')').append('<td>');
+                $('#table_table > tr:eq('+(key+1)+') > td:eq(2)').append(arr[key].address);
             });
-            // document.getElementById('table_btn').insertAdjacentElement('afterend', table);
         })
+    </script>
+
+    <h1>과일 가게 할인</h1>
+    <button id="sale_btn">할인해주세요~</button>
+    <div id="sale_div">
+        <ul>
+            <li>사과 : 3000원</li>
+            <li>바나나 : 2000원</li>
+            <li>체리 : 8000원</li>
+            <li>포도 : 7000원</li>
+            <li>수박 : 5000원</li>
+        </ul>
+    </div>
+    <script>
+        const products = {
+        "사과": 3000,
+        "바나나": 2000,
+        "체리": 8000,
+        "포도": 7000,
+        "수박": 5000
+    };
+    $('#sale_btn').on('click', function(){
+        let cnt = 0;
+        // 객체 배열 순회하는 each
+        $.each(products, function(key, value){
+            if(value >= 7000){
+                value = value * (1 - 0.2);
+            } else if(value >= 5000){
+                value = value * (1- 0.1);
+            } else {
+                value = value;
+            }
+            // div 후손 li를 순회하며 html 값 재할당
+            $('#sale_div li:eq('+ cnt++ +')').html(key +' : '+ value + '원');
+        })
+    })
     </script>
 
 </body>
