@@ -14,7 +14,7 @@
     <!-- <br><input id="addInput" type="text"> -->
     <script>
         // 임의로 한 방법
-        // let num = 0;
+        let num = 0;
         // $(function(){
         //     $('#addBtn').click(function(){
         //         let addInput = '<br><input id="addInput'+ num++ +'" type="text">';
@@ -29,7 +29,7 @@
         $(function(){
             $('#addBtn').click(function(){
                 let addInput = '<br><input id="addInput'+ num++ +'" type="text">';
-                if($('') > 10){
+                if($('#addDiv > input').length >= 10){
                     alert('10개 초과는 생성이 안돼요~');
                 } else{
                     $('#addDiv').append(addInput);
@@ -38,5 +38,30 @@
         })
     </script>
 
+    <h1>글쓰기</h1>
+    <div id="writingDiv">
+        <input id="writingInput1" name="writing" type="radio"><label for="">제목1</label><br>
+        <input id="writingInput2" name="writing" type="radio"><label for="">제목2</label><br>
+        <input id="writingInput3" name="writing" type="radio"><label for="">제목3</label><br>
+        <input id="writingInput4" name="writing" type="radio"><label for="">문단</label><br>
+        <label for="writingInput0">내용</label>
+        <input id="writingInput0" type="text">
+    </div>
+    <script>
+        $(function(){
+            $('#writingInput0').keyup(function(e){
+                let choose1 = $('#writingDiv > input[name=writing]:checked');
+                let choose2 = $('#writingDiv > input[name=writing]:checked').next();
+                let str = $(this).val();
+
+                if(e.key == 'Enter' && str == ''){
+                    alert('입력하세요~');
+                } else if(e.key == 'Enter'){
+                    console.log(e.key);
+                    choose2.text(str);
+                }
+            });
+        })
+    </script>
 </body>
 </html>

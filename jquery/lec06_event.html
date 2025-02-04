@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트</title>
+    <style>
+        .night{
+            background-color: black;
+            color: white;
+        }
+    </style>
+    <script src="../resources/jquery-3.7.1.js"></script>
+</head>
+<body>
+    <h1>on 메소드</h1>
+    <div id="on_div">
+        <ul>
+            <li>html</li>
+            <li>css</li>
+            <li>javascript</li>
+        </ul>
+        <h3>h3이벤트</h3>
+    </div>
+    <script>
+        $(function(){
+            // $('#on_div > ul > li').on('mouseenter', function(e){
+            //     console.log($(e.target).text());
+            // });
+            // 간편 이벤트로 써보자
+            // $('#on_div>ul>li').mouseenter(function(){
+
+            // })
+
+            // 하나의 요소에 여러개의 이벤트 설정하기 중괄호 잘 봐야함!
+            $('#on_div > h3').on({
+                'mouseenter' : function(){
+                    $(this).css('color', 'red');
+                },
+                'mouseleave' : function(){
+                    $(this).css('color', 'gold');
+                }
+            });
+        })
+    </script>
+
+
+    <h1>off 메소드</h1>
+    <button id="offBtn">이벤트</button>
+    <script>
+        // n번 이상 누르면 동작 하지 않게 만들기!
+        $(function(){
+            let count = 0;
+
+            $('#offBtn').on('click', function(){
+                if(count++ < 3){
+                    alert('버튼 클릭!');
+                } else{
+                    $(this).off('click');
+                }
+            })
+        })
+    </script>
+
+
+    <!-- 연습문제 -->
+    <h1>야간모드</h1>
+    <button id="darkNight">야간모드</button>
+    <button id="terminateNight">비활성화</button>
+    <script>
+        $(function(){
+            let bool = true;
+            $('#darkNight').click(function(e){
+                if(bool){
+                    $('body').toggleClass('night');
+                }
+                // $('body').css({
+                //     'backgroundColor' : 'black',
+                //     'color' : 'white'
+                // })
+            });
+            $('#terminateNight').click(function(){
+                // bool = !bool;
+                $('#darkNight').off('click');
+            });
+
+        })
+    </script>
+</body>
+</html>
