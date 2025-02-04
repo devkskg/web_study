@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>요소 설정</title>
+    <script src="../resources/jquery-3.7.1.js"></script>
+    <style>
+        .btn-3d {
+            display: inline-block;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 15px 40px;
+            color: white;
+            background: linear-gradient(145deg, #3a8dff, #2674d9);
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 6px #1a5bbd, 0 8px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+            text-align: center;
+            text-transform: uppercase;
+            user-select: none;
+        }
+        .btn-3d.active {
+            transform: translateY(6px);
+            box-shadow: 0 2px #1a5bbd, 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+        .bg_brown{
+            background-color: rgba(92,64,51,0.6);
+        }
+    </style>
+</head>
+<body id="body">
+    <a class="btn-3d">버튼</a>
+    <script>
+        $(function(){
+            // let bool = true;
+            $('.btn-3d').click(function(event){
+                event.preventDefault();
+                // if(bool){
+                //     $(event.target).addClass('active');
+                //     bool=false;
+                // } else{
+                //     $(event.target).removeClass('active');
+                //     bool=true;
+                // }
+
+
+                // 클래스가 있으면 제거 / 없으면 생성 하는 toggleClass 메소드!
+                $(event.target).toggleClass('active');
+                // 클래스가 있으면 제거 / 없으면 생성 하는 toggleClass 메소드!
+            })
+        })
+    </script>
+
+    <!-- 연습 문제 -->
+    <h1>배경색 변경</h1>
+    <button id="bodyBackColor">배경색 변경</button>
+    <!-- <button id="stopBtn">Stop</button> -->
+    <script>
+        $(function(){
+            // let inter;
+            $('#bodyBackColor').click(function(event){
+                // let rd1 = Math.floor(Math.random()*256);
+                // let rd2 = Math.floor(Math.random()*256);
+                // let rd3 = Math.floor(Math.random()*256);
+                // inter = document.getElementById('body').setInterval(() => {
+                //     $('body').css('backgroundColor', `rgb(${rd1},${rd2},${rd3})`)
+                // }, 1000);
+                $('#body').toggleClass('bg_brown');
+            });
+            // $('#stopBtn').click(function(){
+            //     inter.clearInterval();
+            // });
+        })
+    </script>
+
+    <h1>값 설정</h1>
+    <form>
+        <label for="user_id">아이디</label>
+        <input type="text" id="user_id">
+        <!-- <button type="reset" onclick="getSetValue();">값 설정</button> -->
+    </form>
+    <button onclick="getSetValue();">값 설정</button>
+    <script>
+        const getSetValue = () =>{
+            const userId = $('#user_id').val();
+            console.log(userId);
+            $('#user_id').val('내가 원하는 아이디');
+        }
+    </script>
+
+
+
+    <h1>속성 설정</h1>
+    <button onclick="practiceAttr();">연습</button>
+    <div id="attr_container">
+        <img src="../resources/dung.png" width="200" alt="뚱이">
+        <br>
+        <input type="text" name="img_text">
+    </div>
+
+    <script>
+        let ar123 = {'width':'100', 'height':'50'};
+        const practiceAttr =()=>{
+            // 속성값 조회
+            let loc = $('#attr_container > img').attr('src');
+            console.log(loc);
+            // 속성값 바꾸기
+            $('#attr_container > img').attr('src', '../resources/sponge.png');
+            // 한번에 바꾸기
+            // $('#attr_container > img').attr({'width':'100', 'height':'50'});
+            // 객체를 미리 선언해두고 한번에 바꾸기
+            $('#attr_container > img').attr(ar123);
+            // 속성 제거
+            $('#attr_container > img').removeAttr('src');
+            // input의 disabled 속성 확인
+            const condition = $('#attr_container > input').attr('disabled');
+            console.log(condition); // undefined 뜬다!
+            // selected, checked, disabled, required 얘네들은 속성 명칭만 있어도 영향을 준다.
+            // 속성 중에서 속성의 명칭만 가지고 의미를 표현하는 요소들은 attr말고 다른 애들 써야한다.
+        }
+    </script>
+
+
+
+
+
+</body>
+</html>

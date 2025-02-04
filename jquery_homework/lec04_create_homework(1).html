@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>요소 과제1</title>
+    <script src="../resources/jquery-3.7.1.js"></script>
+</head>
+<body>
+    <h1>10개까지 추가</h1>
+    <div id="addDiv">
+        <button id="addBtn">추가</button>
+    </div>
+    <!-- <br><input id="addInput" type="text"> -->
+    <script>
+        // 임의로 한 방법
+        // let num = 0;
+        // $(function(){
+        //     $('#addBtn').click(function(){
+        //         let addInput = '<br><input id="addInput'+ num++ +'" type="text">';
+        //         if(num > 10){
+        //             alert('10개 초과는 생성이 안돼요~');
+        //         } else{
+        //             $('#addDiv').append(addInput);
+        //         }
+        //     });
+        // })
+
+        $(function(){
+            $('#addBtn').click(function(){
+                let addInput = '<br><input id="addInput'+ num++ +'" type="text">';
+                if($('') > 10){
+                    alert('10개 초과는 생성이 안돼요~');
+                } else{
+                    $('#addDiv').append(addInput);
+                }
+            });
+        })
+    </script>
+
+</body>
+</html>
