@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>요소 생성</title>
+    <script src="../resources/jquery-3.7.1.js"></script>
+</head>
+<body>
+    <h1>html() 함수</h1>
+    <div id="myDiv">
+        <a href="#">구디</a>
+    </div>
+    <button id="getHtml">HTML 가져오기</button>
+    <button id="setHtml">HTML 변경하기</button>
+    <script>
+        $(function(){
+            $('#getHtml').on('click', function(){
+                let myUrl = $('#myDiv').html();
+                console.log(myUrl);
+
+                console.log($('#myDiv').text());
+            });
+            $('#setHtml').click(function(){
+                // $('#myDiv').html('<p>새로운 내용</p>');
+                $('#myDiv').text('새로운 텍스트~');
+            });
+        })
+    </script>
+
+    <!-- 여기서부터 요소 추가 -->
+    <h2>자식 요소 추가</h2>
+    <div id="container" style="border:2px solid green;">
+        <p>기존 자식 요소</p>
+    </div>
+    <button id="addLast">맨 뒤에 추가</button>
+    <button id="addFirst">맨 앞에 추가</button>
+    <button id="addBefore">앞에 추가</button>
+    <button id="addAfter">뒤에 추가</button>
+
+    <script>
+        $(function(){
+            // append() 마지막 자식이 될거다.
+            $('#addLast').click(function(){
+                $('#container').append('<p>맨 뒤에 추가요~😺</p>');
+            });
+            // prepend() 첫번째 자식이 될거다.
+            $('#addFirst').click(function(){
+                $('#container').prepend('<p>맨 앞에 추가!🦊🦊</p>');
+            });
+            // before() 형제가 될거다.
+            $('#addBefore').click(function(){
+                $('#container').before('<p>기준 요소 앞에 추가!🐣🐣🐣</p>');
+            });
+            $('#addAfter').click(function(){
+                $('#container').after('<p>기준 요소 뒤에 추가~🐧🐧🐧🐧</p>');
+            });
+        })
+    </script>
+
+    <!-- 연습 문제 -->
+    <h1>이미지 입력받기</h1>
+    <!-- <img src="../resources/dung.png" alt=""> -->
+    <!-- <input id="imgInput" type="text" placeholder="이미지 경로를 입력."> -->
+    <input id="imgInput" type="text" value="../resources/dung.png">
+    <button id="imgBtn">이미지 삽입 버튼</button>
+    
+    <input type="radio" name="brother" id="back" value="1" checked>
+    <label for="back">뒤에 추가</label>
+    <input type="radio" name="brother" id="front" value="2">
+    <label for="front">앞에 추가</label>
+
+    <div id="imgDiv"><p>이미지 생성 칸</p></div>
+    <script>
+        $(function(){
+            $('#imgBtn').click(function(){
+                let imgUrl = $('#imgInput').val();
+                // $('#imgDiv').append('<img src=\"' + imgUrl +'\">');
+                // 아래와 같은 방법도 작성하기 쉽다.
+                // $('#imgDiv').append(`<img src=${imgUrl}>`);
+                
+                let value = $('input[name=brother]:checked').val();
+                console.log(value);
+                if(value == 1){
+                    $('#imgDiv').append('<img src=\"' + imgUrl +'\" width="50">');
+                } else if(value == 2){
+                    $('#imgDiv').prepend('<img src=\"' + imgUrl +'\" width="50">');
+                }
+            });
+        })
+    </script>
+
+
+    <h1>태그 이동</h1>
+    <style>
+        #move_container{border:2px double dodgerblue;}
+        #new_container{border:2px dashed salmon;}
+    </style>
+    <div id="move_container">
+        <p>첫 번째 p태그</p>
+        <h4>h4 태그</h4>
+    </div>
+    <button onclick="moveAppend();">append 이동</button>
+    <button onclick="movePrepend();">prepend 이동</button>
+    <button onclick="moveBefore();">before 이동</button>
+    <button onclick="moveAfter();">after 이동</button>
+    <div id="new_container">
+        <h5>기준 태그</h5>
+    </div>
+    <script>
+        // 이렇게 해버리면 호출 순서가 틀려서 못 쓴다!!
+        // 이렇게 해버리면 호출 순서가 틀려서 못 쓴다!!
+        // $(function(){
+        //     const moveAppend = function(){
+        //         $('#new_container').append($('#move_container > *'));
+        //     }
+        // })
+        // 이렇게 해버리면 호출 순서가 틀려서 못 쓴다!!
+        // 이렇게 해버리면 호출 순서가 틀려서 못 쓴다!!
+        
+        const moveAppend = function(){
+            $('#new_container').append($('#move_container > *:last'));
+            // 이런 함수도 있다~
+            // $('#move_container > *:last').appendTo($('#new_container'));
+        }
+        const movePrepend = function(){
+            $('#new_container').prepend($('#move_container > *:last'));
+        }
+        const moveBefore = function(){
+            // $('#new_container').before($('#move_container > *:last'));
+            $('#move_container > *:last').insertBefore($('#new_container'));
+        }
+    </script>
+
+
+    <h1>복제하기</h1>
+    <button onclick="cloneTest();">복제</button>
+    <div id="container_clone">
+        <div id="item1" class="item">
+            <span>Hello</span>
+        </div>
+    </div>
+    <script>
+        let num = 2;
+        const cloneTest = function(){
+            // 복제는 되는데 아이디가 계속 똑같다..
+            // let div = $('#item1').clone(true);
+            // 아이디 새로 부여해주기!
+            let div = $('#item1').clone(true).attr('id','item'+num++);
+            $('#container_clone').append(div);
+        }
+
+        $(function(){
+            $('.item').click(function(){
+                // attr() 메소드!! 인자를 하나 넣으면 조회, 두개 넣으면 재할당!
+                alert($(this).attr('id'));
+            });
+        })
+    </script>
+
+
+    <h1>요소 제거</h1>
+    <div id="remove_div">
+        <div id="item2" class="item0">
+            <span>Hi Hello 안녕</span>
+        </div>
+        <h1>테스트</h1>
+    </div>
+    <button id="remove_btn">remove</button>
+    <button id="detach_btn">detach</button>
+    <button id="empty_btn">empty</button>
+    <div id="remove_result">
+
+    </div>
+    <script>
+        $(function(){
+            $('#item2').click(function(){
+                alert('test');
+            });
+            // remove는 이벤트까지 삭제한다.
+            $('#remove_btn').click(function(){
+                const removeEl = $('#item2').remove();
+                $('#remove_result').append(removeEl);
+            });
+            // detach는 이벤트를 간직하고있다.
+            $('#detach_btn').click(function(){
+                const detachEl = $('#item2').detach();
+                $('#remove_result').append(detachEl);
+            });
+            // empty는 안쪽의 내용들만 삭제한다.
+            $('#empty_btn').click(function(){
+                $('#remove_div').empty();
+            });
+        })
+    </script>
+
+
+    <!-- 연습 문제 -->
+    <h1>파일 업로드</h1>
+    <button id="add_file">파일 추가</button>
+    <div id="file_container">
+        <div class="file_div">
+            <input type="file" name="files">
+            <button class="remove_file">삭제</button>
+        </div>
+    </div>
+    <script>
+        $(function(){
+            let classNumber = 123;
+            $('.remove_file').click(function(){
+                if($(this).parent().attr('class') == 123){
+                    $(this).parent().remove();
+                } else{
+                    alert('첫번째는 남아야지~');
+                }
+            });
+            
+            $('#add_file').click(function(){
+                let data1 = $('#file_container > div:first').clone(true).attr('class',classNumber);
+                $('#file_container').append(data1);
+            });
+        })
+    </script>
+</body>
+</html>

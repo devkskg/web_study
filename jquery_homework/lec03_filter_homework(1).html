@@ -113,6 +113,7 @@
         let cnt = 0;
         // 객체 배열 순회하는 each
         $.each(products, function(key, value){
+            // 이거 나중에 Filter 적용해서 풀어보자
             if(value >= 7000){
                 value = value * (1 - 0.2);
             } else if(value >= 5000){
