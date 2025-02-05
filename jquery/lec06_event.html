@@ -86,5 +86,54 @@
 
         })
     </script>
+
+
+
+    <h1>hover 이용하기</h1>
+    <img id="imgTarget" src="../resources/dung.png" alt="뚱이 이미지" width="150">
+    <script>
+        $(function(){
+            // 인자를 두개 써서 mouseenter 와 mouse 나가는 경우 두가지 이벤트를 조절 가능
+            $('#imgTarget').hover(function(){
+                $(this).attr('src', '../resources/sponge.png');
+            }, function(){
+                $(this).attr('src', '../resources/dung.png');
+            });
+        })
+    </script>
+
+
+
+    <h1>trigger</h1>
+    <label>
+        비밀번호
+        <input name="user_pw" type="password">
+    </label><br>
+    <label>
+        비밀번호 확인
+        <input name="pw_check" type="password">
+    </label>
+    <span id="result">f</span>
+    <script>
+        $(function(){
+            // 비밀번호 입력 후 확인 정보를 입력했다고 가정 했을 때.
+            $('input[name=pw_check]').on('keyup', function(){
+                const userPw = $('input[name=user_pw]').val();
+                const pwCheck = $('input[name=pw_check]').val();
+                if(userPw == pwCheck){
+                    $('#result').text('O비밀번호가 일치합니다.O');
+                } else{
+                    $('#result').text('X비밀번호가 불일치합니다.X');
+                }
+            });
+            $('input[name=user_pw]').keyup(function(){
+                // 선택자가 가지고 있는 keyup이벤트를 가져와서 동작하도록 한다.
+                // 똑같은 로직이라면 trigger로 가져와서 쓴다.
+                $('input[name=pw_check]').trigger('keyup');
+            });
+        })
+    </script>
+
+
 </body>
 </html>
