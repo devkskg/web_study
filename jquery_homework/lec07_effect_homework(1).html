@@ -24,12 +24,13 @@
         $(function(){
             $('#notice_btn').click(function(){
                 if($('#notice_div').css('display') == 'none'){
-                    $('#notice_div').slideDown('fast');
+                    // $('#notice_div').slideDown('fast');
                     $('#notice_btn').html('공지 숨기기');
                 } else{
-                    $('#notice_div').slideUp('fast');
+                    // $('#notice_div').slideUp('fast');
                     $('#notice_btn').html('공지 보기');
                 }
+                $('#notice_div').slideToggle('fast');
             });
         })
     </script>
